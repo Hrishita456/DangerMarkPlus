@@ -1,0 +1,33 @@
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+.DS_Store
+
+# Frontend dependencies/builds
+node_modules/
+dist/
+build/
+.vite/
+*.tsbuildinfo
+
+# Python environments, caches, and packaging
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+*.egg-info/
+.coverage
+htmlcov/
+
+# Downloaded datasets and generated analysis output (track manifests instead)
+/data/raw/**
+/data/processed/**
+!/data/raw/.gitkeep
+!/data/processed/.gitkeep
+/models/artifacts/
+/artifacts/
+*.log

@@ -1,0 +1,11 @@
+{
+  "title": "DANGER MARK+",
+  "description": "Provides real-time flood evacuation guidance by identifying who to evacuate, when, where, and via which safe routes to ensure timely, effective response.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
