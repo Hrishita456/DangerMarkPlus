@@ -1,16 +1,26 @@
 # DANGER MARK+ — Flood Consequence & Evacuation Intelligence
 
-Phase 1: the existing `Amazon/` React console reads a deterministic Delhi/Yamuna demo replay from FastAPI through a typed API client. **All operational data is synthetic demonstration data, not verified July 2023 history or operational evacuation guidance.**
+The existing `Amazon/` React console reads FastAPI through a typed API client. The scenario selector separates the synthetic Phase 1 demo replay from the saved Phase 3/4 analysis. **Neither mode is validated operational evacuation guidance or a verified July 2023 flood reconstruction.**
 
-The Figma frontend remains in `Amazon/`. Its stylesheet, branding, desktop layout, and Leaflet map stack are preserved. No real flood modelling, routing engine, messaging, database, authentication, or AWS deployment is implemented.
+The Figma frontend remains in `Amazon/`. Its branding, desktop layout, and Leaflet map stack are preserved. Consequences and provisional routing use the local geospatial datasets and explicit model assumptions. Messaging, databases, authentication, and AWS deployment are not implemented.
 
 Phase 2 adds a separate [Delhi/Yamuna dataset pipeline](data/README.md): catalogued sources, offline geospatial preprocessing, and validation. The real datasets are not connected to the synthetic replay. See the [Phase 2 handoff](docs/phase-2.md) for the resumed implementation, source inventory, checks, and limitations.
 
 Phase 3 adds a separate [deterministic flood-consequences engine](docs/phase-3.md), with population overlap, road impacts, locality accessibility and run-oriented APIs. Its pilot uses an explicitly hypothetical terrain surface, not a validated historical flood reconstruction. The existing frontend and demo replay remain unchanged. See [computed results](docs/phase-3-results.json) for assumptions, metrics and reproducibility checks.
 
+Phase 4 adds an [evacuation planning engine](docs/phase-4.md) over saved Phase 3 results. It provides provisional destination assignments, primary/independent backup routes and explicit capacity/timing uncertainty. See [pilot planning results](docs/phase-4-results.json).
+
+Phase 5 integrates those saved outputs into Command Center, Evacuation, Flood Intelligence, Safe Sites and a simulated advisory preview. See the [Phase 5 handoff and browser checklist](docs/phase-5.md) for validation status, API coverage and limitations. The original demo remains independently selectable.
+
 ## Run locally
 
-Phase 4 adds a separate [evacuation planning engine](docs/phase-4.md) over saved Phase 3 results. It provides provisional destination assignments, primary/independent backup routes and explicit capacity/timing uncertainty. See [pilot planning results](docs/phase-4-results.json). The frontend remains on its original demo replay.
+For the existing complete workspace, start the backend with the already installed combined GIS/API environment (no reinstallation or dataset acquisition needed):
+
+```sh
+scripts/.venv/bin/python -m uvicorn app.main:app --app-dir backend --host 127.0.0.1 --port 8000
+```
+
+The following minimal backend setup supports the demo alone; analysis additionally needs the Phase 2/3 environment, datasets and saved outputs described in their handoffs.
 
 Tested with Python 3.12.3, Node 22.22.1 and pnpm 10.34.3. The backend supports Python 3.11+; use Node 22.18+ for the frontend's TypeScript test command. Run the two services in separate terminals.
 
@@ -59,7 +69,7 @@ corepack pnpm@10.34.3 run preview --host 127.0.0.1 --port 8444
 
 ## API
 
-All endpoints are read-only. JSON numbers remain numbers; dates are ISO 8601 with timezone offsets. Presentation formatting lives in the frontend.
+All frontend-consumed endpoints are read-only. JSON numbers remain numbers; dates are ISO 8601 with timezone offsets. Presentation formatting lives in the frontend. Analysis endpoints are listed in the [Phase 5 handoff](docs/phase-5.md); the table below describes the separate demo.
 
 | Method | Endpoint | Purpose |
 | --- | --- | --- |

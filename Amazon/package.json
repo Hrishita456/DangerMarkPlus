@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "typecheck": "tsc --noEmit",
-    "test": "node --experimental-strip-types --test src/api/format.test.ts",
+    "test": "node --experimental-strip-types --test src/api/*.test.ts",
     "preview": "vite preview",
     "format": "oxfmt"
   },

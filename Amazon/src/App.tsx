@@ -1,6 +1,10 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import EvacuationMap from "./components/EvacuationMap";
 import useReplay from "./hooks/useReplay";
+import useAnalysis from "./hooks/useAnalysis";
+import AnalysisPages from "./components/AnalysisPages";
+import { DEMO_RUN, PILOT_RUN, capacityLabel } from "./api/analysis";
+import type { AnalysisSummary } from "./types/analysis";
 import { date, distance, level, minutesUntil, number, remaining, time } from "./api/format";
 import type { FrameId, Plan, Route, RouteKind, Severity, Site, Summary, Zone } from "./types/replay";
 
@@ -71,21 +75,22 @@ const actionState = (summary: Summary, zone: Zone): CommandState => zone.severit
 const stateLabel: Record<CommandState, string> = { evacuate: "EVACUATION ACTIVE", prepare: "HIGH RISK", monitor: "WATCH", clear: "ALL CLEAR" };
 const deadlineFor = (zone: Zone, route: Route) => zone.severity === "safe" ? null : route.departure_deadline;
 
-function AppShell({ page, setPage, summary, unavailable, children }: {
-  page: Page; setPage: (page: Page) => void; summary?: Summary; unavailable: boolean; children: ReactNode;
+function AppShell({ page, setPage, summary, analysisSummary, run, selectRun, unavailable, children }: {
+  page: Page; setPage: (page: Page) => void; summary?: Summary; analysisSummary?: AnalysisSummary; run: string; selectRun: (run: string) => void; unavailable: boolean; children: ReactNode;
 }) {
   return <div className="app-shell">
     <aside className="sidebar">
       <div className="brand"><SignalIcon /><div><div className="brand-name">DANGER MARK<span>+</span></div><div className="brand-subtitle">Evacuation intelligence</div></div></div>
+      <label className="analysis-select run-select">SCENARIO / RUN<select aria-label="Scenario run" value={run} onChange={e => selectRun(e.target.value)}><option value={DEMO_RUN}>DEMO REPLAY · Synthetic</option><option value={PILOT_RUN}>ANALYSIS RUN · 205 m assumption</option></select></label>
       <nav className="nav" aria-label="Primary"><div className="nav-label">Response console</div>
         {navItems.map(item => <button className={`nav-item ${page === item.id ? "active" : ""}`} key={item.id} onClick={() => setPage(item.id)} type="button">
           <span>{item.label}</span>{item.id === "command" && <span className="nav-alert" />}
         </button>)}
       </nav>
-      <div className="sidebar-footer"><div className="system-meta">{summary?.region_name || "DANGER MARK+"} • DEMO REPLAY</div><div className="system-meta">NOT HISTORICAL EVIDENCE</div></div>
+      <div className="sidebar-footer"><div className="system-meta">{run === DEMO_RUN ? `${summary?.region_name || "DANGER MARK+"} • DEMO REPLAY` : "DELHI / YAMUNA • ANALYSIS RUN"}</div><div className="system-meta">NOT HISTORICAL EVIDENCE</div></div>
     </aside>
     <main className="main">
-      <header className="topbar">
+      {run !== DEMO_RUN ? <header className="topbar"><div><div className="eyebrow">ANALYSIS RUN <span className="active-word">· SCENARIO ASSUMPTION</span></div><div className="topbar-title">{navItems.find(item => item.id === page)?.label}</div></div><div className="header-metrics"><div><span>ASSUMED SURFACE</span><strong>{analysisSummary?.scenario.flood.water_surface_m == null ? "—" : `${analysisSummary.scenario.flood.water_surface_m} m`}</strong></div><div><span>WET AREA</span><strong>{analysisSummary ? `${analysisSummary.flooded_area_km2.toFixed(2)} km²` : "—"}</strong></div><div><span>EST. EXPOSED</span><strong>{analysisSummary ? capacityLabel(analysisSummary.population.exposed_population) : "—"}</strong></div><div><span>DEGRADED ACCESS</span><strong>{analysisSummary?.accessibility_counts.degraded_access ?? "—"}</strong></div></div><div className="clock"><span>SCENARIO CONTEXT · IST</span><strong>{analysisSummary ? time(analysisSummary.replay_at,"Asia/Kolkata") : "—"}</strong><small>{analysisSummary ? date(analysisSummary.replay_at,"Asia/Kolkata") : unavailable ? "UNAVAILABLE" : "LOADING"}</small></div></header> : <header className="topbar">
         <div><div className="eyebrow">{summary ? `${summary.river_name} FLOOD RESPONSE` : "REPLAY CONNECTION"} <span className={`active-word state-${summary?.frame_id || "monitor"}`}>• {summary ? stateLabel[summary.frame_id] : unavailable ? "DATA UNAVAILABLE" : "WAITING FOR API"}</span></div>
           <div className="topbar-title">{navItems.find(item => item.id === page)?.label}</div></div>
         <div className="header-metrics">
@@ -95,7 +100,7 @@ function AppShell({ page, setPage, summary, unavailable, children }: {
           <div><span>CRITICAL ZONES</span><strong className={summary?.severity_counts.critical ? "critical-text" : ""}>{summary?.severity_counts.critical ?? "—"}</strong></div>
         </div>
         <div className="clock"><span>DEMO REPLAY TIME</span><strong>{summary ? time(summary.replay_at, summary.timezone) : "—"}</strong><small>{summary ? date(summary.replay_at, summary.timezone) : unavailable ? "UNAVAILABLE" : "LOADING"}</small></div>
-      </header>
+      </header>}
       {children}
     </main>
   </div>;
@@ -319,12 +324,15 @@ function AdvisoryPreview({ summary, plan, route, onClose }: { summary: Summary; 
 export default function App() {
   const [page, setPage] = useState<Page>("command");
   const [showAdvisory, setShowAdvisory] = useState(false);
-  const replay = useReplay();
+  const [run, setRun] = useState(DEMO_RUN);
+  const replay = useReplay(run === DEMO_RUN);
+  const analysis = useAnalysis(run, run !== DEMO_RUN);
   const data = replay.data, route = replay.route;
   const navigate = (next: Page) => { setPage(next); setShowAdvisory(false); };
   const errorTitles: Record<string, string> = { ZONE_NOT_FOUND: "ZONE NOT FOUND", PLAN_UNAVAILABLE: "PLAN UNAVAILABLE", BACKEND_UNAVAILABLE: "BACKEND UNAVAILABLE" };
+  if (run !== DEMO_RUN) return <AppShell page={page} setPage={navigate} run={run} selectRun={setRun} analysisSummary={analysis.error ? undefined : analysis.data?.summary} unavailable={Boolean(analysis.error)}><div className="page-content"><AnalysisPages state={analysis} page={page} navigate={navigate}/></div></AppShell>;
   return <>
-    <AppShell page={page} setPage={navigate} summary={data?.summary} unavailable={Boolean(replay.error)}>
+    <AppShell run={run} selectRun={next => {setShowAdvisory(false); setRun(next);}} page={page} setPage={navigate} summary={data?.summary} unavailable={Boolean(replay.error)}>
       {data && route && !replay.error && <EmergencyStrip summary={data.summary} zone={data.plan.zone} route={route} onView={() => navigate("evacuation")} />}
       <div className="page-content">
         {replay.loading ? <section className="plan-summary" role="status" aria-live="polite"><div><div className="section-title">LOADING DEMO REPLAY</div><p>Fetching one consistent scenario and zone plan…</p></div></section>

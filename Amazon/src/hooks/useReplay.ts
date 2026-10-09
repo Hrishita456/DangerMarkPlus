@@ -4,7 +4,7 @@ import type { FrameId, ReplayData, RouteKind } from "../types/replay";
 
 const frames: FrameId[] = ["evacuate", "prepare", "monitor", "clear"];
 
-export default function useReplay() {
+export default function useReplay(enabled = true) {
   const [initial] = useState(() => new URLSearchParams(window.location.search));
   const [runId] = useState("demo-yamuna-2023");
   const [frameId, setFrameId] = useState<FrameId>(() => {
@@ -18,6 +18,7 @@ export default function useReplay() {
   const requestKey = `${runId}:${frameId}:${selectedZone}:${attempt}`;
 
   useEffect(() => {
+    if (!enabled) return;
     const controller = new AbortController();
     Promise.all([
       replayApi.summary(runId, frameId, controller.signal),
@@ -37,7 +38,7 @@ export default function useReplay() {
         ? error : new ApiError("INVALID_REPLAY", "The API returned an invalid replay response.") });
     });
     return () => controller.abort();
-  }, [runId, frameId, selectedZone, requestKey]);
+  }, [enabled, runId, frameId, selectedZone, requestKey]);
 
   const current = result?.key === requestKey ? result : undefined;
   const data = current?.data;
