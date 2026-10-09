@@ -1,0 +1,56 @@
+{
+  "id": "osm_safe_sites",
+  "name": "OpenStreetMap archived safe_sites",
+  "provider": "OpenStreetMap contributors / Overpass API",
+  "url": "https://maps.mail.ru/osm/tools/overpass/api/interpreter",
+  "license": "ODbL-1.0",
+  "license_url": "https://www.openstreetmap.org/copyright",
+  "original_crs": "EPSG:4326",
+  "spatial_resolution": "Vector; mapping accuracy varies",
+  "temporal_coverage": "2023-07-13T12:30:00Z",
+  "classification": "volunteered_geographic_information",
+  "limitations": [
+    "Historical map state, not verified field completeness",
+    "Missing tags do not imply absence",
+    "Not a disaster safety assessment",
+    "OSM relations omitted; way/node representation only"
+  ],
+  "acquired_at": "2026-10-08T20:37:43.300262+00:00",
+  "raw_files": [
+    {
+      "path": "data/raw/delhi_yamuna/safe_sites/osm_safe_sites_20230713.osm",
+      "bytes": 345093,
+      "sha256": "23df4eecab20d38fd724e3e30ba9447b4b60ae097239fb38527a85d299e64e11"
+    }
+  ],
+  "processed_crs": "EPSG:4326",
+  "processed_files": [
+    {
+      "path": "data/processed/delhi_yamuna/safe_sites/candidates.geojson",
+      "bytes": 282599,
+      "sha256": "18c83e498f8256e88e3c890ef96017d7f957019015a82cac2b222d75b3d47c4f"
+    }
+  ],
+  "preprocessing_steps": [
+    "Read complete OSM XML geometries",
+    "Repair invalid geometries in projected CRS and clip to study polygon",
+    "Preserve mapped locality nodes or use points on mapped polygons",
+    "All facility capacities unknown; no safety assessment",
+    "Export GeoJSON longitude, latitude in WGS84"
+  ],
+  "query": "[out:xml][timeout:180][date:\"2023-07-13T12:30:00Z\"];(node(28.59000000,77.21500000,28.71500000,77.30500000)[\"amenity\"~\"^(school|college|university|hospital|community_centre|townhall|social_facility)$\"];way(28.59000000,77.21500000,28.71500000,77.30500000)[\"amenity\"~\"^(school|college|university|hospital|community_centre|townhall|social_facility)$\"];node(28.59000000,77.21500000,28.71500000,77.30500000)[\"office\"=\"government\"];way(28.59000000,77.21500000,28.71500000,77.30500000)[\"office\"=\"government\"];);(._;>;);out meta;",
+  "request_bbox_wgs84": [
+    77.215,
+    28.59,
+    77.305,
+    28.715
+  ],
+  "acquisition_steps": [
+    "Archived Overpass snapshot",
+    "Pilot bounding box",
+    "complete referenced members and nodes",
+    "metadata retained"
+  ],
+  "configuration_sha256": "e188fc592574a961ed2d5b06a194e87f43bd7fe8ab7294a550cdf269efd8cd87",
+  "feature_count": 269
+}

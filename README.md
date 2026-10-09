@@ -4,6 +4,8 @@ Phase 1: the existing `Amazon/` React console reads a deterministic Delhi/Yamuna
 
 The Figma frontend remains in `Amazon/`. Its stylesheet, branding, desktop layout, and Leaflet map stack are preserved. No real flood modelling, routing engine, messaging, database, authentication, or AWS deployment is implemented.
 
+Phase 2 adds a separate [Delhi/Yamuna dataset pipeline](data/README.md): catalogued sources, offline geospatial preprocessing, and validation. The real datasets are not connected to the synthetic replay. See the [Phase 2 handoff](docs/phase-2.md) for the resumed implementation, source inventory, checks, and limitations.
+
 ## Run locally
 
 Tested with Python 3.12.3, Node 22.22.1 and pnpm 10.34.3. The backend supports Python 3.11+; use Node 22.18+ for the frontend's TypeScript test command. Run the two services in separate terminals.
@@ -81,11 +83,21 @@ BharatBuilds/                 # Independent Git root
 │   │   ├── services/        # Deterministic views and derived totals
 │   │   └── fixtures/        # Small, version-controlled demo JSON
 │   └── tests/
+├── data/
+│   ├── catalog/             # Config, manifests, queries, bundle index and validation
+│   ├── raw/                 # Cached original inputs (ignored by Git)
+│   └── processed/           # Prepared geospatial bundle (ignored by Git)
+├── scripts/
+│   ├── download/            # Bounded, cached acquisition
+│   ├── preprocessing/       # Offline preparation; isolated GIS environment
+│   ├── validation/          # Integrity/representation checks and bundle index
+│   └── tests/               # Offline pipeline regression tests
 └── docs/
-    └── phase-1.md           # Handoff, invariants, test evidence and mock inventory
+    ├── phase-1.md           # Replay invariants, tests and mock inventory
+    └── phase-2.md           # Dataset handoff and known limitations
 ```
 
-Reserved for later approved work: `data/raw/`, `data/processed/`, `scripts/`, `models/`, `infra/`. They are not populated in this phase. Keep large datasets and generated output out of Git; track source/provenance manifests in future. Keep geospatial processing behind the backend service boundary, with preprocessing in `scripts/`; add models only if needed. Infrastructure can later describe S3, a single FastAPI container on ECS/Fargate, and frontend hosting. No database or distributed processing is required for this fixture foundation.
+`models/` and `infra/` remain reserved for later approved work. Large datasets and generated output stay out of Git; only small manifests and validation metadata are tracked. Geospatial preprocessing lives in `scripts/` and does not add dependencies to the replay backend. No database, distributed processing, ML model, or AWS deployment is added.
 
 ## Edit the demo
 
@@ -93,4 +105,4 @@ The single source is [`backend/app/fixtures/demo-yamuna-2023.json`](backend/app/
 
 Countdowns use `departure_deadline - replay_at`, never the computer's present date. Navigation preserves the current frame, zone and primary/backup choice. Reload starts a new demo session; optional `?zone=11&route=backup&frame=prepare` seeds its initial selection. These URL parameters are startup inputs, not a continuously synchronized router.
 
-See [Phase 1 handoff](docs/phase-1.md) for exact files, consistency rules, remaining mock behavior, and verification results. Phase 2 has not started.
+See [Phase 1 handoff](docs/phase-1.md) for the unchanged replay's consistency rules and remaining mock behavior, and [data/README.md](data/README.md) for the separate Phase 2 inputs and reproduction commands.

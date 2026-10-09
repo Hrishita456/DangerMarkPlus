@@ -1,0 +1,139 @@
+{
+  "id": "nrsc_shantivan",
+  "name": "NRSC flood inundation / standing water: Shantivan and surroundings, 13 July 2023",
+  "provider": "NRSC / ISRO, Disaster Management Support",
+  "url": "https://www.nrsc.gov.in/nrscnew/assets/pdf/maps_dms/dl_2023_12_07_0007_VAP.pdf",
+  "documentation_url": "https://www.nrsc.gov.in/nrscnew/2023_SikkimFloods.php",
+  "license": "Map marked For official use; open redistribution licence not established",
+  "original_crs": "EPSG:32644 (embedded map projection); GPTS control points in WGS84 latitude/longitude",
+  "spatial_resolution": null,
+  "temporal_coverage": "Sentinel-2B image dated 2023-07-13; map issued 2023-07-14; exact acquisition time not stated",
+  "category": "flood",
+  "kind": "document",
+  "raw_name": "nrsc_shantivan_20230713.pdf",
+  "classification": "satellite_map_evidence",
+  "limitations": [
+    "Flood/standing-water evidence, not a binary flood-depth or flood-only mask",
+    "Cloud cover and exact image acquisition time require attention",
+    "Georeferenced cartographic evidence, not a classified binary inundation mask"
+  ],
+  "acquired_at": "2026-10-08T15:25:44.219849+00:00",
+  "raw_files": [
+    {
+      "path": "data/raw/delhi_yamuna/flood/nrsc_shantivan_20230713.pdf",
+      "bytes": 1705534,
+      "sha256": "1fd44496195e61761c6af4d31a3d2906bad09731eaaa4fddf507a6f01c486116"
+    }
+  ],
+  "processed_crs": "EPSG:32643",
+  "processed_files": [
+    {
+      "path": "data/processed/delhi_yamuna/flood/nrsc_shantivan_evidence_30m.tif",
+      "bytes": 45360,
+      "sha256": "31ec5fb7eb85d7d4eb69835d2829a559f93a28cd4cd777f9d82edd2d2a527eb0"
+    },
+    {
+      "path": "data/processed/delhi_yamuna/flood/evidence_coverage.geojson",
+      "bytes": 1830,
+      "sha256": "ccf060ca8284fc1e70e5ef6bb76d182a0f28dabc5b03b2fbdf61ecf86260de32"
+    }
+  ],
+  "preprocessing_steps": [
+    "Read embedded GeoPDF viewport and GCS WKT",
+    "Render and crop map viewport, excluding legend/insets",
+    "Fit affine transform in embedded map CRS from four geographic controls",
+    "Project onto common 30m grid; retain labels/clouds; no classification"
+  ],
+  "acquisition_steps": [
+    "Unmodified source PDF download"
+  ],
+  "source_locator": "PDF page 1: image date, issue date and map ID 2023/FL/DL/07-VAP/13-Jul-2023; stale URL filename contains 12_07",
+  "raster": {
+    "path": "data/processed/delhi_yamuna/flood/nrsc_shantivan_evidence_30m.tif",
+    "crs": "EPSG:32643",
+    "bounds": [
+      716310.0,
+      3164490.0,
+      725490.0,
+      3178620.0
+    ],
+    "resolution": [
+      30.0,
+      30.0
+    ],
+    "shape": [
+      471,
+      306
+    ],
+    "bands": 4,
+    "nodata": null,
+    "dtype": "uint8",
+    "scales": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "offsets": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "tags": {
+      "alpha_band": "4",
+      "interpretation": "cartographic satellite evidence, NOT a binary flood mask",
+      "resampling": "nearest",
+      "AREA_OR_POINT": "Area"
+    }
+  },
+  "embedded_map_crs": "EPSG:32644",
+  "max_control_fit_residual_m": 0.24058638850051606,
+  "source_control_points_lat_lon": [
+    [
+      28.62598,
+      77.24308
+    ],
+    [
+      28.65873,
+      77.24191
+    ],
+    [
+      28.65965,
+      77.27513
+    ],
+    [
+      28.6269,
+      77.27628
+    ]
+  ],
+  "map_coverage_wgs84": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          77.24308,
+          28.62598
+        ],
+        [
+          77.24191,
+          28.65873
+        ],
+        [
+          77.27513,
+          28.65965
+        ],
+        [
+          77.27628,
+          28.6269
+        ],
+        [
+          77.24308,
+          28.62598
+        ]
+      ]
+    ]
+  },
+  "quantitative_flood_mask": false,
+  "configuration_sha256": "e188fc592574a961ed2d5b06a194e87f43bd7fe8ab7294a550cdf269efd8cd87"
+}

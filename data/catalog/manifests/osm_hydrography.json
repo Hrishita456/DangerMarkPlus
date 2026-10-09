@@ -1,0 +1,57 @@
+{
+  "id": "osm_hydrography",
+  "name": "OpenStreetMap archived hydrography",
+  "provider": "OpenStreetMap contributors / Overpass API",
+  "url": "https://maps.mail.ru/osm/tools/overpass/api/interpreter",
+  "license": "ODbL-1.0",
+  "license_url": "https://www.openstreetmap.org/copyright",
+  "original_crs": "EPSG:4326",
+  "spatial_resolution": "Vector; mapping accuracy varies",
+  "temporal_coverage": "2023-07-13T12:30:00Z",
+  "classification": "volunteered_geographic_information",
+  "limitations": [
+    "Historical map state, not verified field completeness",
+    "Missing tags do not imply absence",
+    "Not a disaster safety assessment",
+    "OSM relations omitted; way/node representation only"
+  ],
+  "acquired_at": "2026-10-08T20:34:09.869004+00:00",
+  "raw_files": [
+    {
+      "path": "data/raw/delhi_yamuna/hydrography/osm_hydrography_20230713.osm",
+      "bytes": 343738,
+      "sha256": "161a08ff5823372c1a759d37b8d59f3015b304932f8102cf3829517b81443bf5"
+    }
+  ],
+  "processed_crs": "EPSG:4326",
+  "processed_files": [
+    {
+      "path": "data/processed/delhi_yamuna/hydrography/hydrography.geojson",
+      "bytes": 159702,
+      "sha256": "0623d077a1031c5967317c9c02423e0e943f693067abb170543842e95676c4b7"
+    }
+  ],
+  "preprocessing_steps": [
+    "Read complete OSM XML geometries",
+    "Repair invalid geometries in projected CRS and clip to study polygon",
+    "Preserve mapped locality nodes or use points on mapped polygons",
+    "All facility capacities unknown; no safety assessment",
+    "Export GeoJSON longitude, latitude in WGS84"
+  ],
+  "query": "[out:xml][timeout:180][date:\"2023-07-13T12:30:00Z\"];(way(28.590,77.215,28.715,77.305)[\"waterway\"];);(._;>;);out meta;",
+  "request_bbox_wgs84": [
+    77.215,
+    28.59,
+    77.305,
+    28.715
+  ],
+  "acquisition_steps": [
+    "Archived Overpass snapshot",
+    "Pilot bounding box",
+    "complete referenced members and nodes",
+    "metadata retained",
+    "Hydrography queries waterway ways only; natural=water and water multipolygon relations excluded to bound extraction"
+  ],
+  "configuration_sha256": "e188fc592574a961ed2d5b06a194e87f43bd7fe8ab7294a550cdf269efd8cd87",
+  "feature_count": 143
+}

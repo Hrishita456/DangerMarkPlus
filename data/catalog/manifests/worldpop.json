@@ -1,0 +1,207 @@
+{
+  "id": "worldpop",
+  "name": "WorldPop Global2 India 2023 constrained population, 1km R2025A UA v1",
+  "provider": "WorldPop, University of Southampton",
+  "url": "https://hub.worldpop.org/geodata/listing?id=136",
+  "url_role": "Publisher product landing page; exact file URL recorded separately",
+  "documentation_url": "https://hub.worldpop.org/geodata/listing?id=136",
+  "release_statement_url": "https://data.worldpop.org/repo/prj/Global_2015_2030/R2025A/doc/Global2_Release_Statement_R2025A_v1.pdf",
+  "doi": "10.5258/SOTON/WP00840",
+  "license": "CC-BY-4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "original_crs": "EPSG:4326",
+  "spatial_resolution": "30 arc-seconds (approximately 1km at equator); effective information remains approximately 1km",
+  "native_resolution_m_nominal": 1000,
+  "units": "estimated persons per native pixel",
+  "temporal_coverage": "2023 estimate; R2025A v1 released 2025",
+  "category": "population",
+  "kind": "local_raster",
+  "raw_name": "worldpop_2023_1km_native.tif",
+  "local_source_name": "ind_pop_2023_CN_1km_R2025A_UA_v1.tif",
+  "expected_local_sha256": "c2859c04866c24759b66c3e327672832c78ad06772e436b8a1aceaf600b953bc",
+  "filename_variant": "UA; preserved exactly from user-supplied filename; suffix definition not independently established",
+  "download_allowed": false,
+  "classification": "modelled_population",
+  "limitations": [
+    "User-approved 1km source replaces the earlier planned 100m source; no further population download is authorized",
+    "Constrained alpha-release population estimate, not census counts or event-day displacement data",
+    "Approximately 1km source cells cannot resolve settlements, roads or flood-edge exposure at 30m/90m scales",
+    "90m output is alignment-only conservative redistribution assuming uniform population within each approximately 1km source pixel; it adds no information",
+    "Do not bilinearly interpolate person counts or interpret counts as densities",
+    "Original download timestamp and independent publisher checksum were not supplied; local checksum and browser-origin metadata are recorded"
+  ],
+  "acquired_at": "2026-10-09T04:14:30.150327+00:00",
+  "raw_files": [
+    {
+      "path": "data/raw/delhi_yamuna/population/worldpop_2023_1km_native.tif",
+      "bytes": 2712,
+      "sha256": "093ec30dd614c4c6a10ffb744a4f87eb4ac23308fe3e95c78199fb481b700f89"
+    },
+    {
+      "path": "data/raw/delhi_yamuna/population/ind_pop_2023_CN_1km_R2025A_UA_v1.tif",
+      "bytes": 16312246,
+      "sha256": "c2859c04866c24759b66c3e327672832c78ad06772e436b8a1aceaf600b953bc"
+    }
+  ],
+  "processed_crs": "EPSG:32643",
+  "processed_files": [
+    {
+      "path": "data/processed/delhi_yamuna/population/population_90m.tif",
+      "bytes": 34002,
+      "sha256": "a3c0d615f9114bd05fc9bc525855dabd5ce9f3d43f52bfa05d2fe1cbbd02152c"
+    },
+    {
+      "path": "data/processed/delhi_yamuna/population/known_coverage_fraction_90m.tif",
+      "bytes": 1896,
+      "sha256": "f11583fcf97f68a9617b93de0b3f398b1e62b3e0c2cfbba54cb58663040b60fd"
+    }
+  ],
+  "preprocessing_steps": [
+    "Retain native-grid input",
+    "Project native cell polygons using always_xy",
+    "Allocate counts by exact polygon intersection area",
+    "Keep source nodata unknown; record coverage fraction"
+  ],
+  "remote_headers": {},
+  "source_shape": [
+    3451,
+    3504
+  ],
+  "source_resolution_degrees": [
+    0.0083333333,
+    0.0083333333
+  ],
+  "source_nodata": -99999.0,
+  "source_window": {
+    "column": 1080,
+    "row": 813,
+    "width": 16,
+    "height": 20
+  },
+  "acquisition_method": "user_supplied_local_file",
+  "acquisition_steps": [
+    "Register and hash user-supplied file; no network request",
+    "pilot bbox plus two native pixels",
+    "lossless native-grid subset; no resampling",
+    "Recover exact source file URL from original file browser-download metadata; no network acquisition"
+  ],
+  "original_download_at": null,
+  "original_download_url": "https://data.worldpop.org/GIS/Population/Global_2015_2030/R2025A/2023/IND/v1/1km_ua/constrained/ind_pop_2023_CN_1km_R2025A_UA_v1.tif",
+  "acquisition_date_note": "acquired_at records local registration; original user download timestamp was not supplied",
+  "checksum_origin": "Locally computed SHA-256; no independent publisher checksum supplied",
+  "configuration_sha256": "e188fc592574a961ed2d5b06a194e87f43bd7fe8ab7294a550cdf269efd8cd87",
+  "rasters": [
+    {
+      "path": "data/processed/delhi_yamuna/population/population_90m.tif",
+      "crs": "EPSG:32643",
+      "bounds": [
+        716310.0,
+        3164490.0,
+        725490.0,
+        3178620.0
+      ],
+      "resolution": [
+        90.0,
+        90.0
+      ],
+      "shape": [
+        157,
+        102
+      ],
+      "bands": 1,
+      "nodata": -9999.0,
+      "dtype": "float64",
+      "scales": [
+        1.0
+      ],
+      "offsets": [
+        0.0
+      ],
+      "tags": {
+        "assumption": "uniform distribution within each native pixel; no new detail",
+        "fine_grid_is_alignment_only": "True",
+        "native_resolution_degrees": "[0.0083333333, 0.0083333333]",
+        "native_resolution_m_nominal": "1000",
+        "resampling": "conservative projected area overlap",
+        "units": "persons per grid cell within study boundary",
+        "AREA_OR_POINT": "Area"
+      }
+    },
+    {
+      "path": "data/processed/delhi_yamuna/population/known_coverage_fraction_90m.tif",
+      "crs": "EPSG:32643",
+      "bounds": [
+        716310.0,
+        3164490.0,
+        725490.0,
+        3178620.0
+      ],
+      "resolution": [
+        90.0,
+        90.0
+      ],
+      "shape": [
+        157,
+        102
+      ],
+      "bands": 1,
+      "nodata": null,
+      "dtype": "float32",
+      "scales": [
+        1.0
+      ],
+      "offsets": [
+        0.0
+      ],
+      "tags": {
+        "resampling": "area overlap",
+        "units": "fraction of study-intersection area covered by valid source cells",
+        "AREA_OR_POINT": "Area"
+      }
+    }
+  ],
+  "conservation": {
+    "source_valid_cell_count": 192,
+    "source_fractional_pilot_total": 2842043.3806058443,
+    "aligned_pilot_total": 2842043.38060584,
+    "absolute_conservation_error": 4.190951585769653e-09,
+    "source_nodata_reinterpreted_as_zero": false
+  },
+  "native_subset_raster": {
+    "path": "data/raw/delhi_yamuna/population/worldpop_2023_1km_native.tif",
+    "crs": "EPSG:4326",
+    "bounds": [
+      77.19166563790003,
+      28.5666668884,
+      77.32499897070004,
+      28.7333335544
+    ],
+    "resolution": [
+      0.0083333333,
+      0.0083333333
+    ],
+    "shape": [
+      20,
+      16
+    ],
+    "bands": 1,
+    "nodata": -99999.0,
+    "dtype": "float32",
+    "scales": [
+      1.0
+    ],
+    "offsets": [
+      0.0
+    ],
+    "tags": {
+      "source_url": "https://hub.worldpop.org/geodata/listing?id=136",
+      "subset": "native pixels, no resampling",
+      "units": "estimated persons per native pixel",
+      "AREA_OR_POINT": "Area"
+    }
+  },
+  "effective_spatial_resolution": "30 arc-seconds (approximately 1km at equator); effective information remains approximately 1km",
+  "fine_grid_is_alignment_only": true,
+  "source_file_url": "https://data.worldpop.org/GIS/Population/Global_2015_2030/R2025A/2023/IND/v1/1km_ua/constrained/ind_pop_2023_CN_1km_R2025A_UA_v1.tif",
+  "download_origin_evidence": "Original file com.apple.metadata:kMDItemWhereFroms records the exact WorldPop file URL and https://hub.worldpop.org/ referrer"
+}

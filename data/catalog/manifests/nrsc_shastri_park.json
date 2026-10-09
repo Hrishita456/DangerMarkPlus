@@ -1,0 +1,137 @@
+{
+  "id": "nrsc_shastri_park",
+  "name": "NRSC flood inundation / standing water: Shastri Park Metro Depot, 13 July 2023",
+  "provider": "NRSC / ISRO, Disaster Management Support",
+  "url": "https://www.nrsc.gov.in/nrscnew/assets/pdf/maps_dms/dl_2023_12_07_0008_VAP.pdf",
+  "documentation_url": "https://www.nrsc.gov.in/nrscnew/2023_SikkimFloods.php",
+  "license": "Map marked For official use; open redistribution licence not established",
+  "original_crs": "EPSG:32644 (embedded map projection); GPTS control points in WGS84 latitude/longitude",
+  "spatial_resolution": null,
+  "temporal_coverage": "Map labelled 13 July 2023; filename/map identifier contains 12-Jul-2023; acquisition timestamp unresolved",
+  "category": "flood",
+  "kind": "document",
+  "raw_name": "nrsc_shastri_park_20230713.pdf",
+  "classification": "satellite_map_evidence",
+  "limitations": [
+    "Flood/standing-water evidence, not a binary flood-depth or flood-only mask",
+    "Georeferenced cartographic evidence, not a classified binary inundation mask"
+  ],
+  "acquired_at": "2026-10-08T15:25:44.829763+00:00",
+  "raw_files": [
+    {
+      "path": "data/raw/delhi_yamuna/flood/nrsc_shastri_park_20230713.pdf",
+      "bytes": 2216194,
+      "sha256": "130a279915aa28cc918fe97d6394f3b2ee4951c5171296bdfa445f04b26ea4b3"
+    }
+  ],
+  "processed_crs": "EPSG:32643",
+  "processed_files": [
+    {
+      "path": "data/processed/delhi_yamuna/flood/nrsc_shastri_park_evidence_30m.tif",
+      "bytes": 69388,
+      "sha256": "5f2efd6a8a2146cd3ff145da4aee73ab6381f85577880a48d6fda55ec5a3abd9"
+    },
+    {
+      "path": "data/processed/delhi_yamuna/flood/evidence_coverage.geojson",
+      "bytes": 1830,
+      "sha256": "ccf060ca8284fc1e70e5ef6bb76d182a0f28dabc5b03b2fbdf61ecf86260de32"
+    }
+  ],
+  "preprocessing_steps": [
+    "Read embedded GeoPDF viewport and GCS WKT",
+    "Render and crop map viewport, excluding legend/insets",
+    "Fit affine transform in embedded map CRS from four geographic controls",
+    "Project onto common 30m grid; retain labels/clouds; no classification"
+  ],
+  "acquisition_steps": [
+    "Unmodified source PDF download"
+  ],
+  "raster": {
+    "path": "data/processed/delhi_yamuna/flood/nrsc_shastri_park_evidence_30m.tif",
+    "crs": "EPSG:32643",
+    "bounds": [
+      716310.0,
+      3164490.0,
+      725490.0,
+      3178620.0
+    ],
+    "resolution": [
+      30.0,
+      30.0
+    ],
+    "shape": [
+      471,
+      306
+    ],
+    "bands": 4,
+    "nodata": null,
+    "dtype": "uint8",
+    "scales": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "offsets": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "tags": {
+      "alpha_band": "4",
+      "interpretation": "cartographic satellite evidence, NOT a binary flood mask",
+      "resampling": "nearest",
+      "AREA_OR_POINT": "Area"
+    }
+  },
+  "embedded_map_crs": "EPSG:32644",
+  "max_control_fit_residual_m": 0.0990490324205907,
+  "source_control_points_lat_lon": [
+    [
+      28.66173,
+      77.21825
+    ],
+    [
+      28.69213,
+      77.21715
+    ],
+    [
+      28.69374,
+      77.27512
+    ],
+    [
+      28.66334,
+      77.2762
+    ]
+  ],
+  "map_coverage_wgs84": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          77.21825,
+          28.66173
+        ],
+        [
+          77.21715,
+          28.69213
+        ],
+        [
+          77.27512,
+          28.69374
+        ],
+        [
+          77.2762,
+          28.66334
+        ],
+        [
+          77.21825,
+          28.66173
+        ]
+      ]
+    ]
+  },
+  "quantitative_flood_mask": false,
+  "configuration_sha256": "e188fc592574a961ed2d5b06a194e87f43bd7fe8ab7294a550cdf269efd8cd87"
+}

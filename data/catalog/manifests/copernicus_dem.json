@@ -1,0 +1,135 @@
+{
+  "id": "copernicus_dem",
+  "name": "Copernicus GLO-30 Public, N28 E077, 2021 release",
+  "provider": "Copernicus / ESA; public COG hosted by Sinergise",
+  "url": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N28_00_E077_00_DEM/Copernicus_DSM_COG_10_N28_00_E077_00_DEM.tif",
+  "documentation_url": "https://registry.opendata.aws/copernicus-dem/",
+  "license": "Copernicus DEM GLO-30 free and open licence; attribution required",
+  "license_url": "https://documentation.dataspace.copernicus.eu/APIs/SentinelHub/Data/DEM/resources/license/License-COPDEM-30.pdf",
+  "original_crs": "EPSG:4326",
+  "vertical_reference": "EGM2008 orthometric heights, metres (EPSG:3855)",
+  "spatial_resolution": "1 arc-second, nominal 30m",
+  "temporal_coverage": "TanDEM-X acquisitions principally 2011-2015; public COG release 2021",
+  "category": "elevation",
+  "kind": "raster_window",
+  "raw_name": "copernicus_native.tif",
+  "classification": "remotely_sensed_surface_model",
+  "limitations": [
+    "DSM, not bare-earth DEM",
+    "Not 2023 terrain",
+    "No verified transform from CWC gauge datum"
+  ],
+  "acquired_at": "2026-10-08T15:25:43.442161+00:00",
+  "raw_files": [
+    {
+      "path": "data/raw/delhi_yamuna/elevation/copernicus_native.tif",
+      "bytes": 470106,
+      "sha256": "b42dc8771bb176f9f27d4e7c47b40f558aab12be29cbf8f2ca068ce11c9a4e7d"
+    }
+  ],
+  "processed_crs": "EPSG:32643",
+  "processed_files": [
+    {
+      "path": "data/processed/delhi_yamuna/elevation/dem_30m.tif",
+      "bytes": 430665,
+      "sha256": "e8008aaa00aaba59a3e391064840062dd254ad3a17395d506e319c7f75497568"
+    }
+  ],
+  "preprocessing_steps": [
+    "Bilinear projection to configured metric grid",
+    "Mask outside pixel-centre study boundary"
+  ],
+  "remote_headers": {
+    "ETag": "\"6550b4ed06eb808f109da99fbe12365a\"",
+    "Last-Modified": "Mon, 09 May 2022 14:13:11 GMT",
+    "Content-Range": "bytes 0-15/41680243"
+  },
+  "source_shape": [
+    3600,
+    3600
+  ],
+  "source_resolution_degrees": [
+    0.0002777777777777778,
+    0.0002777777777777778
+  ],
+  "source_nodata": null,
+  "source_window": {
+    "column": 772,
+    "row": 1024,
+    "width": 329,
+    "height": 455
+  },
+  "acquisition_steps": [
+    "HTTP byte-range read",
+    "pilot bbox plus two native pixels",
+    "lossless native-grid subset; full source not downloaded"
+  ],
+  "raster": {
+    "path": "data/processed/delhi_yamuna/elevation/dem_30m.tif",
+    "crs": "EPSG:32643",
+    "bounds": [
+      716310.0,
+      3164490.0,
+      725490.0,
+      3178620.0
+    ],
+    "resolution": [
+      30.0,
+      30.0
+    ],
+    "shape": [
+      471,
+      306
+    ],
+    "bands": 1,
+    "nodata": -9999.0,
+    "dtype": "float32",
+    "scales": [
+      1.0
+    ],
+    "offsets": [
+      0.0
+    ],
+    "tags": {
+      "interpretation": "surface elevation, not bare-earth",
+      "resampling": "bilinear",
+      "units": "metres",
+      "vertical_reference": "EGM2008",
+      "AREA_OR_POINT": "Area"
+    }
+  },
+  "configuration_sha256": "e188fc592574a961ed2d5b06a194e87f43bd7fe8ab7294a550cdf269efd8cd87",
+  "native_subset_raster": {
+    "path": "data/raw/delhi_yamuna/elevation/copernicus_native.tif",
+    "crs": "EPSG:4326",
+    "bounds": [
+      77.21430555555555,
+      28.589305555555555,
+      77.30569444444444,
+      28.715694444444445
+    ],
+    "resolution": [
+      0.0002777777777777778,
+      0.0002777777777777778
+    ],
+    "shape": [
+      455,
+      329
+    ],
+    "bands": 1,
+    "nodata": null,
+    "dtype": "float32",
+    "scales": [
+      1.0
+    ],
+    "offsets": [
+      0.0
+    ],
+    "tags": {
+      "source_url": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N28_00_E077_00_DEM/Copernicus_DSM_COG_10_N28_00_E077_00_DEM.tif",
+      "subset": "native pixels, no resampling",
+      "units": "metres",
+      "AREA_OR_POINT": "Area"
+    }
+  }
+}

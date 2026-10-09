@@ -1,0 +1,55 @@
+{
+  "id": "osm_communities",
+  "name": "OpenStreetMap archived communities",
+  "provider": "OpenStreetMap contributors / Overpass API",
+  "url": "https://maps.mail.ru/osm/tools/overpass/api/interpreter",
+  "license": "ODbL-1.0",
+  "license_url": "https://www.openstreetmap.org/copyright",
+  "original_crs": "EPSG:4326",
+  "spatial_resolution": "Vector; mapping accuracy varies",
+  "temporal_coverage": "2023-07-13T12:30:00Z",
+  "classification": "volunteered_geographic_information",
+  "limitations": [
+    "Historical map state, not verified field completeness",
+    "Only mapped locality nodes; place polygons and relations omitted",
+    "Not a disaster safety assessment"
+  ],
+  "acquired_at": "2026-10-08T20:33:09.778216+00:00",
+  "raw_files": [
+    {
+      "path": "data/raw/delhi_yamuna/communities/osm_communities_20230713.osm",
+      "bytes": 24638,
+      "sha256": "3e1dfde1727cec1965dbd5537556d7825595b23ba1f6098b544d8cee40fc9714"
+    }
+  ],
+  "processed_crs": "EPSG:4326",
+  "processed_files": [
+    {
+      "path": "data/processed/delhi_yamuna/communities/localities.geojson",
+      "bytes": 57438,
+      "sha256": "126c53a65d4f4434a623a7937b82c44a5821286d090f02c76499401d3f9fb643"
+    }
+  ],
+  "preprocessing_steps": [
+    "Read complete OSM XML geometries",
+    "Repair invalid geometries in projected CRS and clip to study polygon",
+    "Preserve mapped locality nodes or use points on mapped polygons",
+    "All facility capacities unknown; no safety assessment",
+    "Export GeoJSON longitude, latitude in WGS84"
+  ],
+  "query": "[out:xml][timeout:60][date:\"2023-07-13T12:30:00Z\"];node(28.590,77.215,28.715,77.305)[\"place\"];out meta;",
+  "request_bbox_wgs84": [
+    77.215,
+    28.59,
+    77.305,
+    28.715
+  ],
+  "acquisition_steps": [
+    "Archived Overpass snapshot",
+    "Pilot bounding box",
+    "Metadata retained",
+    "Reuse successful diagnostic extract without downloading again"
+  ],
+  "configuration_sha256": "e188fc592574a961ed2d5b06a194e87f43bd7fe8ab7294a550cdf269efd8cd87",
+  "feature_count": 85
+}

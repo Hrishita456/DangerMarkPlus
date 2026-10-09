@@ -1,0 +1,67 @@
+{
+  "id": "osm_roads",
+  "name": "OpenStreetMap archived roads",
+  "provider": "OpenStreetMap contributors / Overpass API",
+  "url": "https://overpass-api.de/api/interpreter",
+  "license": "ODbL-1.0",
+  "license_url": "https://www.openstreetmap.org/copyright",
+  "original_crs": "EPSG:4326",
+  "spatial_resolution": "Vector; mapping accuracy varies",
+  "temporal_coverage": "2023-07-13T12:30:00Z",
+  "classification": "volunteered_geographic_information",
+  "limitations": [
+    "Historical map state, not verified field completeness",
+    "Missing tags do not imply absence",
+    "Not a disaster safety assessment",
+    "No turn-restriction relations; conditional access is not evaluated",
+    "Not a flood routing result; disconnected components retained"
+  ],
+  "acquired_at": "2026-10-08T15:25:13.038294+00:00",
+  "raw_files": [
+    {
+      "path": "data/raw/delhi_yamuna/roads/osm_roads_20230713.osm",
+      "bytes": 21131082,
+      "sha256": "0db370deab6bb653ef8e612002d23d4f9954ff421397bf2f8346282b1a8a581c"
+    }
+  ],
+  "processed_crs": "EPSG:32643",
+  "processed_files": [
+    {
+      "path": "data/processed/delhi_yamuna/roads/roads.graphml",
+      "bytes": 59944468,
+      "sha256": "054ab414595a93a02fabd5e325bab1afec014bc78a80d4195ac2c88f57017b2c"
+    },
+    {
+      "path": "data/processed/delhi_yamuna/roads/roads.gpkg",
+      "bytes": 32575488,
+      "sha256": "e3621c5c5b12d5f5ae0c679e4b66d2ee80ac0acae950a26132c52c2204363450"
+    }
+  ],
+  "preprocessing_steps": [
+    "Build directed OSMnx graph preserving one-way tags and all components",
+    "Truncate to metric 500m buffer",
+    "Simplify without merging changes in bridge/tunnel/layer/class/speed",
+    "Project and calculate metre lengths",
+    "Preserve maxspeed; explicitly flag fallback class speeds"
+  ],
+  "query": "[out:xml][timeout:180][date:\"2023-07-13T12:30:00Z\"];(way[\"highway\"~\"^(motorway|motorway_link|trunk|trunk_link|primary|primary_link|secondary|secondary_link|tertiary|tertiary_link|residential|unclassified|living_street|service|road)$\"][\"area\"!=\"yes\"][\"access\"!~\"^(private|no)$\"][\"motor_vehicle\"!=\"no\"][\"motorcar\"!=\"no\"](28.58548935,77.20988346,28.71951057,77.31011628););(._;>>;);out meta;",
+  "request_bbox_wgs84": [
+    77.20988345643613,
+    28.585489353521087,
+    77.31011628447655,
+    28.719510566675698
+  ],
+  "acquisition_steps": [
+    "Archived Overpass snapshot",
+    "500m metric buffer",
+    "complete referenced members and nodes",
+    "metadata retained"
+  ],
+  "graph_statistics": {
+    "nodes": 32239,
+    "edges": 86396,
+    "weak_components": 117,
+    "assumed_speed_edges": 85001
+  },
+  "configuration_sha256": "e188fc592574a961ed2d5b06a194e87f43bd7fe8ab7294a550cdf269efd8cd87"
+}

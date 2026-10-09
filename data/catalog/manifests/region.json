@@ -1,0 +1,28 @@
+{
+  "id": "region",
+  "name": "Central/eastern Delhi Yamuna corridor: Wazirabad to Nizamuddin",
+  "provider": "Project analysis configuration",
+  "url": "data/catalog/pilot.json",
+  "license": "Project configuration",
+  "classification": "assumption",
+  "original_crs": "EPSG:4326",
+  "processed_crs": "EPSG:4326",
+  "configuration_sha256": "e188fc592574a961ed2d5b06a194e87f43bd7fe8ab7294a550cdf269efd8cd87",
+  "spatial_resolution": "Configured rectangle",
+  "temporal_coverage": null,
+  "raw_files": [],
+  "processed_files": [
+    {
+      "path": "data/processed/delhi_yamuna/region/boundary.geojson",
+      "bytes": 18591,
+      "sha256": "5a871e301bbbe72a30b9efe098068141eb00a29e7d0c48b2cacea4b0d9e97bd1"
+    }
+  ],
+  "preprocessing_steps": [
+    "Densify rectangle edges before metric projection",
+    "Area computed in projected metres"
+  ],
+  "limitations": [
+    "Not an administrative boundary, observed flood extent or catchment"
+  ]
+}

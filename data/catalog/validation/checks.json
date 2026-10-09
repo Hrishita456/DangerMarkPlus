@@ -1,0 +1,111 @@
+{
+  "scope": "Final Phase 2 checks using user-supplied WorldPop 1km raster; no acquisition or reprocessing",
+  "started_at": "2026-10-09T04:17:49.250107+00:00",
+  "status": "pass",
+  "checks": [
+    {
+      "name": "complete_dataset_validation",
+      "directory": ".",
+      "command": [
+        "scripts/.venv/bin/python",
+        "scripts/validation/validate_dataset.py"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 9.449,
+      "output": "{\n  \"status\": \"pass\",\n  \"checks\": 10,\n  \"failed\": []\n}\n"
+    },
+    {
+      "name": "pipeline_tests",
+      "directory": ".",
+      "command": [
+        "scripts/.venv/bin/python",
+        "-m",
+        "pytest",
+        "scripts/tests",
+        "-q"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 2.187,
+      "output": ".........                                                                [100%]\n=============================== warnings summary ===============================\nscripts/tests/test_pipeline.py: 13 warnings\n  /Users/hrishitasingh/Documents/BharatBuilds/scripts/.venv/lib/python3.12/site-packages/rasterio/transform.py:178: PendingDeprecationWarning: Use `@` matmul instead of `*` mul operator for matrix multiplication\n    return Affine.translation(west, north) * Affine.scale(xsize, -ysize)\n\nscripts/tests/test_pipeline.py: 24 warnings\n  /Users/hrishitasingh/Documents/BharatBuilds/scripts/preprocessing/prepare.py:138: PendingDeprecationWarning: Use `@` matmul instead of `*` mul operator for matrix multiplication\n    corners = [src.transform * (col, row), src.transform * (col + 1, row),\n\nscripts/tests/test_pipeline.py: 24 warnings\n  /Users/hrishitasingh/Documents/BharatBuilds/scripts/preprocessing/prepare.py:139: PendingDeprecationWarning: Use `@` matmul instead of `*` mul operator for matrix multiplication\n    src.transform * (col + 1, row + 1), src.transform * (col, row + 1)]\n\nscripts/tests/test_pipeline.py: 22 warnings\n  /Users/hrishitasingh/Documents/BharatBuilds/scripts/preprocessing/prepare.py:155: PendingDeprecationWarning: Use `@` matmul instead of `*` mul operator for matrix multiplication\n    left, top = grid[\"transform\"] * (col, row)\n\nscripts/tests/test_pipeline.py: 22 warnings\n  /Users/hrishitasingh/Documents/BharatBuilds/scripts/preprocessing/prepare.py:156: PendingDeprecationWarning: Use `@` matmul instead of `*` mul operator for matrix multiplication\n    right, bottom = grid[\"transform\"] * (col + 1, row + 1)\n\nscripts/tests/test_pipeline.py::test_local_population_registration_never_uses_network\n  /Users/hrishitasingh/Documents/BharatBuilds/scripts/.venv/lib/python3.12/site-packages/rasterio/windows.py:360: PendingDeprecationWarning: Use `@` matmul instead of `*` mul operator for matrix multiplication\n    x, y = transform * (window.col_off or 0.0, window.row_off or 0.0)\n\nscripts/tests/test_pipeline.py::test_local_population_registration_never_uses_network\n  /Users/hrishitasingh/Documents/BharatBuilds/scripts/.venv/lib/python3.12/site-packages/rasterio/windows.py:361: PendingDeprecationWarning: Use `@` matmul instead of `*` mul operator for matrix multiplication\n    return Affine.translation(\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n9 passed, 107 warnings in 1.47s\n"
+    },
+    {
+      "name": "backend_tests",
+      "directory": "backend",
+      "command": [
+        ".venv/bin/python",
+        "-m",
+        "pytest",
+        "-q"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.84,
+      "output": ".....................                                                    [100%]\n=============================== warnings summary ===============================\n.venv/lib/python3.12/site-packages/fastapi/testclient.py:1\n  /Users/hrishitasingh/Documents/BharatBuilds/backend/.venv/lib/python3.12/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.\n    from starlette.testclient import TestClient as TestClient  # noqa\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n21 passed, 1 warning in 0.44s\n"
+    },
+    {
+      "name": "backend_dependencies",
+      "directory": "backend",
+      "command": [
+        ".venv/bin/python",
+        "-m",
+        "pip",
+        "check"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.482,
+      "output": "No broken requirements found.\nWARNING: The directory '/Users/hrishitasingh/Library/Caches/pip' or its parent directory is not owned or is not writable by the current user. The cache has been disabled. Check the permissions and owner of that directory. If executing pip with sudo, you should use sudo's -H flag.\n"
+    },
+    {
+      "name": "frontend_tests",
+      "directory": "Amazon",
+      "command": [
+        "corepack",
+        "pnpm@10.34.3",
+        "test"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.752,
+      "output": "\n> figma-make-app@1.0.0 test /Users/hrishitasingh/Documents/BharatBuilds/Amazon\n> node --experimental-strip-types --test src/api/format.test.ts\n\nTAP version 13\n# Subtest: departure countdown uses the replay timestamp, not the wall clock\nok 1 - departure countdown uses the replay timestamp, not the wall clock\n  ---\n  duration_ms: 0.911292\n  type: 'test'\n  ...\n# Subtest: countdowns handle midnight, expired deadlines, and standby plans\nok 2 - countdowns handle midnight, expired deadlines, and standby plans\n  ---\n  duration_ms: 0.101875\n  type: 'test'\n  ...\n# Subtest: replay displays in the scenario timezone\nok 3 - replay displays in the scenario timezone\n  ---\n  duration_ms: 44.010625\n  type: 'test'\n  ...\n1..3\n# tests 3\n# suites 0\n# pass 3\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 167.516041\n"
+    },
+    {
+      "name": "frontend_typecheck",
+      "directory": "Amazon",
+      "command": [
+        "corepack",
+        "pnpm@10.34.3",
+        "run",
+        "typecheck"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 1.906,
+      "output": "\n> figma-make-app@1.0.0 typecheck /Users/hrishitasingh/Documents/BharatBuilds/Amazon\n> tsc --noEmit\n\n"
+    },
+    {
+      "name": "frontend_build",
+      "directory": "Amazon",
+      "command": [
+        "corepack",
+        "pnpm@10.34.3",
+        "run",
+        "build"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 1.041,
+      "output": "\n> figma-make-app@1.0.0 build /Users/hrishitasingh/Documents/BharatBuilds/Amazon\n> vite build\n\nvite v8.0.5 building client environment for production...\n\ntransforming...\u2713 21 modules transformed.\nrendering chunks...\ncomputing gzip size...\ndist/robots.txt                   0.02 kB \u2502 gzip:   0.04 kB\ndist/index.html                   0.91 kB \u2502 gzip:   0.42 kB\ndist/assets/index-DedTMu6n.css   92.00 kB \u2502 gzip:  21.95 kB\ndist/assets/index-DrPJQJFe.js   380.36 kB \u2502 gzip: 113.29 kB\n\n\u2713 built in 290ms\n"
+    },
+    {
+      "name": "gis_dependencies",
+      "directory": ".",
+      "command": [
+        "scripts/.venv/bin/python",
+        "-m",
+        "pip",
+        "check"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.599,
+      "output": "No broken requirements found.\nWARNING: The directory '/Users/hrishitasingh/Library/Caches/pip' or its parent directory is not owned or is not writable by the current user. The cache has been disabled. Check the permissions and owner of that directory. If executing pip with sudo, you should use sudo's -H flag.\n"
+    }
+  ],
+  "preserved_existing_artifacts": 21,
+  "finished_at": "2026-10-09T04:18:06.631857+00:00"
+}

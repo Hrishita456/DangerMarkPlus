@@ -1,0 +1,195 @@
+{
+  "schema_version": "1.0",
+  "region_id": "delhi_yamuna",
+  "region_version": "1.0.0",
+  "bbox_wgs84": [
+    77.215,
+    28.59,
+    77.305,
+    28.715
+  ],
+  "metric_crs": "EPSG:32643",
+  "web_crs": "EPSG:4326",
+  "configuration": {
+    "path": "data/catalog/pilot.json",
+    "bytes": 2592,
+    "sha256": "e188fc592574a961ed2d5b06a194e87f43bd7fe8ab7294a550cdf269efd8cd87"
+  },
+  "source_catalogue": {
+    "path": "data/catalog/sources.json",
+    "bytes": 7834,
+    "sha256": "235480ce6d36182d2e20950db0160f71599cb9fc62c5fec644e0786da74dd409"
+  },
+  "toolchain_lock": {
+    "path": "scripts/requirements-lock.txt",
+    "bytes": 507,
+    "sha256": "84bda59a50b3cccb152d8e8b3f6b9a30dc0457b6b518c2e75f9d04b11f7305c1"
+  },
+  "validation_report": {
+    "path": "data/catalog/validation/report.json",
+    "bytes": 5505,
+    "sha256": "a845cf3a3abbe3a3f27e0ec422d2deab462d33c694e0f33b4de1bedfce83340e"
+  },
+  "readiness": {
+    "dataset_integrity_validated": true,
+    "quantitative_flood_mask_available": false,
+    "gauge_dem_vertical_datums_reconciled": false,
+    "operational_use_validated": false
+  },
+  "inputs": {
+    "region_boundary": {
+      "representation": "analysis_rectangle",
+      "manifest_ids": [
+        "region"
+      ],
+      "files": [
+        {
+          "path": "data/processed/delhi_yamuna/region/boundary.geojson",
+          "bytes": 18591,
+          "sha256": "5a871e301bbbe72a30b9efe098068141eb00a29e7d0c48b2cacea4b0d9e97bd1"
+        }
+      ]
+    },
+    "gauge": {
+      "representation": "catalogued_station_and_documented_peak_only",
+      "manifest_ids": [
+        "cwc_case_study",
+        "cwc_station_catalogue"
+      ],
+      "files": [
+        {
+          "path": "data/processed/delhi_yamuna/gauge/station.geojson",
+          "bytes": 1128,
+          "sha256": "19836afdeb4c6a978aeb61e748798eeef7908969140225f6f082f7807168301e"
+        },
+        {
+          "path": "data/processed/delhi_yamuna/gauge/observations.json",
+          "bytes": 386,
+          "sha256": "0aa51a4a5684b44d1c897991bb06777b71eb15b370ad465fd96a812c138c518e"
+        }
+      ]
+    },
+    "dem": {
+      "representation": "surface_elevation_raster",
+      "manifest_ids": [
+        "copernicus_dem"
+      ],
+      "files": [
+        {
+          "path": "data/processed/delhi_yamuna/elevation/dem_30m.tif",
+          "bytes": 430665,
+          "sha256": "e8008aaa00aaba59a3e391064840062dd254ad3a17395d506e319c7f75497568"
+        }
+      ]
+    },
+    "population": {
+      "representation": "estimated_person_counts_and_known_coverage",
+      "manifest_ids": [
+        "worldpop"
+      ],
+      "files": [
+        {
+          "path": "data/processed/delhi_yamuna/population/population_90m.tif",
+          "bytes": 34002,
+          "sha256": "a3c0d615f9114bd05fc9bc525855dabd5ce9f3d43f52bfa05d2fe1cbbd02152c"
+        },
+        {
+          "path": "data/processed/delhi_yamuna/population/known_coverage_fraction_90m.tif",
+          "bytes": 1896,
+          "sha256": "f11583fcf97f68a9617b93de0b3f398b1e62b3e0c2cfbba54cb58663040b60fd"
+        }
+      ],
+      "native_source_subset": {
+        "path": "data/raw/delhi_yamuna/population/worldpop_2023_1km_native.tif",
+        "bytes": 2712,
+        "sha256": "093ec30dd614c4c6a10ffb744a4f87eb4ac23308fe3e95c78199fb481b700f89"
+      },
+      "source_spatial_resolution": "30 arc-seconds (approximately 1km at equator); effective information remains approximately 1km",
+      "native_resolution_m_nominal": 1000,
+      "aligned_grid_resolution_m": 90,
+      "fine_grid_is_alignment_only": true,
+      "within_native_cell_assumption": "Uniform population per projected area; no inferred subpixel distribution"
+    },
+    "road_graph": {
+      "representation": "historical_directed_motor_vehicle_graph",
+      "manifest_ids": [
+        "osm_roads"
+      ],
+      "files": [
+        {
+          "path": "data/processed/delhi_yamuna/roads/roads.graphml",
+          "bytes": 59944468,
+          "sha256": "054ab414595a93a02fabd5e325bab1afec014bc78a80d4195ac2c88f57017b2c"
+        },
+        {
+          "path": "data/processed/delhi_yamuna/roads/roads.gpkg",
+          "bytes": 32575488,
+          "sha256": "e3621c5c5b12d5f5ae0c679e4b66d2ee80ac0acae950a26132c52c2204363450"
+        }
+      ]
+    },
+    "hydrography": {
+      "representation": "mapped_water_geometries",
+      "manifest_ids": [
+        "osm_hydrography"
+      ],
+      "files": [
+        {
+          "path": "data/processed/delhi_yamuna/hydrography/hydrography.geojson",
+          "bytes": 159702,
+          "sha256": "0623d077a1031c5967317c9c02423e0e943f693067abb170543842e95676c4b7"
+        }
+      ]
+    },
+    "communities": {
+      "representation": "locality_representative_points",
+      "manifest_ids": [
+        "osm_communities"
+      ],
+      "files": [
+        {
+          "path": "data/processed/delhi_yamuna/communities/localities.geojson",
+          "bytes": 57438,
+          "sha256": "126c53a65d4f4434a623a7937b82c44a5821286d090f02c76499401d3f9fb643"
+        }
+      ]
+    },
+    "safe_site_candidates": {
+      "representation": "unverified_facilities_unknown_capacity",
+      "manifest_ids": [
+        "osm_safe_sites"
+      ],
+      "files": [
+        {
+          "path": "data/processed/delhi_yamuna/safe_sites/candidates.geojson",
+          "bytes": 282599,
+          "sha256": "18c83e498f8256e88e3c890ef96017d7f957019015a82cac2b222d75b3d47c4f"
+        }
+      ]
+    },
+    "historical_flood_evidence": {
+      "representation": "georeferenced_cartographic_satellite_evidence",
+      "manifest_ids": [
+        "nrsc_shantivan",
+        "nrsc_shastri_park"
+      ],
+      "files": [
+        {
+          "path": "data/processed/delhi_yamuna/flood/nrsc_shantivan_evidence_30m.tif",
+          "bytes": 45360,
+          "sha256": "31ec5fb7eb85d7d4eb69835d2829a559f93a28cd4cd777f9d82edd2d2a527eb0"
+        },
+        {
+          "path": "data/processed/delhi_yamuna/flood/evidence_coverage.geojson",
+          "bytes": 1830,
+          "sha256": "ccf060ca8284fc1e70e5ef6bb76d182a0f28dabc5b03b2fbdf61ecf86260de32"
+        },
+        {
+          "path": "data/processed/delhi_yamuna/flood/nrsc_shastri_park_evidence_30m.tif",
+          "bytes": 69388,
+          "sha256": "5f2efd6a8a2146cd3ff145da4aee73ab6381f85577880a48d6fda55ec5a3abd9"
+        }
+      ]
+    }
+  }
+}

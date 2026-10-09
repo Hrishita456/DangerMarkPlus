@@ -1,0 +1,131 @@
+{
+  "copernicus_dem": {
+    "name": "Copernicus GLO-30 Public, N28 E077, 2021 release",
+    "provider": "Copernicus / ESA; public COG hosted by Sinergise",
+    "url": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N28_00_E077_00_DEM/Copernicus_DSM_COG_10_N28_00_E077_00_DEM.tif",
+    "documentation_url": "https://registry.opendata.aws/copernicus-dem/",
+    "license": "Copernicus DEM GLO-30 free and open licence; attribution required",
+    "license_url": "https://documentation.dataspace.copernicus.eu/APIs/SentinelHub/Data/DEM/resources/license/License-COPDEM-30.pdf",
+    "original_crs": "EPSG:4326",
+    "vertical_reference": "EGM2008 orthometric heights, metres (EPSG:3855)",
+    "spatial_resolution": "1 arc-second, nominal 30m",
+    "temporal_coverage": "TanDEM-X acquisitions principally 2011-2015; public COG release 2021",
+    "category": "elevation",
+    "kind": "raster_window",
+    "raw_name": "copernicus_native.tif",
+    "classification": "remotely_sensed_surface_model",
+    "limitations": [
+      "DSM, not bare-earth DEM",
+      "Not 2023 terrain",
+      "No verified transform from CWC gauge datum"
+    ]
+  },
+  "worldpop": {
+    "name": "WorldPop Global2 India 2023 constrained population, 1km R2025A UA v1",
+    "provider": "WorldPop, University of Southampton",
+    "url": "https://hub.worldpop.org/geodata/listing?id=136",
+    "url_role": "Publisher product landing page; exact file URL recorded separately",
+    "documentation_url": "https://hub.worldpop.org/geodata/listing?id=136",
+    "release_statement_url": "https://data.worldpop.org/repo/prj/Global_2015_2030/R2025A/doc/Global2_Release_Statement_R2025A_v1.pdf",
+    "doi": "10.5258/SOTON/WP00840",
+    "license": "CC-BY-4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "original_crs": "EPSG:4326",
+    "spatial_resolution": "30 arc-seconds (approximately 1km at equator); effective information remains approximately 1km",
+    "native_resolution_m_nominal": 1000,
+    "units": "estimated persons per native pixel",
+    "temporal_coverage": "2023 estimate; R2025A v1 released 2025",
+    "category": "population",
+    "kind": "local_raster",
+    "raw_name": "worldpop_2023_1km_native.tif",
+    "local_source_name": "ind_pop_2023_CN_1km_R2025A_UA_v1.tif",
+    "expected_local_sha256": "c2859c04866c24759b66c3e327672832c78ad06772e436b8a1aceaf600b953bc",
+    "filename_variant": "UA; preserved exactly from user-supplied filename; suffix definition not independently established",
+    "download_allowed": false,
+    "classification": "modelled_population",
+    "limitations": [
+      "User-approved 1km source replaces the earlier planned 100m source; no further population download is authorized",
+      "Constrained alpha-release population estimate, not census counts or event-day displacement data",
+      "Approximately 1km source cells cannot resolve settlements, roads or flood-edge exposure at 30m/90m scales",
+      "90m output is alignment-only conservative redistribution assuming uniform population within each approximately 1km source pixel; it adds no information",
+      "Do not bilinearly interpolate person counts or interpret counts as densities",
+      "Original download timestamp and independent publisher checksum were not supplied; local checksum and browser-origin metadata are recorded"
+    ],
+    "source_file_url": "https://data.worldpop.org/GIS/Population/Global_2015_2030/R2025A/2023/IND/v1/1km_ua/constrained/ind_pop_2023_CN_1km_R2025A_UA_v1.tif",
+    "download_origin_evidence": "Original file com.apple.metadata:kMDItemWhereFroms records the exact WorldPop file URL and https://hub.worldpop.org/ referrer"
+  },
+  "cwc_case_study": {
+    "name": "Delhi Floods - 2023: A Case Study, CWC/2025/01",
+    "provider": "Central Water Commission, Hydrology (Urban) Directorate",
+    "url": "https://cwc.gov.in/sites/default/files/delhi-floods-2023-case-study.pdf",
+    "license": "Publicly accessible government report; redistribution licence not established",
+    "original_crs": null,
+    "spatial_resolution": null,
+    "temporal_coverage": "July 2023 event; published January 2025",
+    "category": "gauge",
+    "kind": "document",
+    "raw_name": "cwc_delhi_floods_2023.pdf",
+    "classification": "historical_reference",
+    "source_locator": "PDF page 9 (printed page 4), section 2.1, peak level and time",
+    "limitations": [
+      "Report contains modelled inundation as well as observed gauge references; do not label its simulations as satellite observations",
+      "No machine-readable hourly gauge series provided"
+    ]
+  },
+  "cwc_station_catalogue": {
+    "name": "CWC Flood Forecasting and Warning Network Appraisal 2022",
+    "provider": "Central Water Commission",
+    "url": "https://cwc.gov.in/sites/default/files/appraisal-report-2022-publication-no..pdf",
+    "license": "Publicly accessible government report; redistribution licence not established",
+    "original_crs": null,
+    "spatial_resolution": "Station coordinates rounded to 0.01 degree",
+    "temporal_coverage": "2022 station catalogue, pre-event thresholds",
+    "category": "gauge",
+    "kind": "document",
+    "raw_name": "cwc_station_catalogue_2022.pdf",
+    "classification": "historical_reference",
+    "source_locator": "PDF page 80 (printed page 73), Annex-II, station row 27: Delhi Railway Bridge",
+    "limitations": [
+      "Rounded location is not a surveyed sensor coordinate",
+      "Vertical datum definition not established from catalogue row"
+    ]
+  },
+  "nrsc_shantivan": {
+    "name": "NRSC flood inundation / standing water: Shantivan and surroundings, 13 July 2023",
+    "provider": "NRSC / ISRO, Disaster Management Support",
+    "url": "https://www.nrsc.gov.in/nrscnew/assets/pdf/maps_dms/dl_2023_12_07_0007_VAP.pdf",
+    "documentation_url": "https://www.nrsc.gov.in/nrscnew/2023_SikkimFloods.php",
+    "license": "Map marked For official use; open redistribution licence not established",
+    "original_crs": "EPSG:32644 (embedded map projection); GPTS control points in WGS84 latitude/longitude",
+    "spatial_resolution": null,
+    "temporal_coverage": "Sentinel-2B image dated 2023-07-13; map issued 2023-07-14; exact acquisition time not stated",
+    "category": "flood",
+    "kind": "document",
+    "raw_name": "nrsc_shantivan_20230713.pdf",
+    "classification": "satellite_map_evidence",
+    "limitations": [
+      "Flood/standing-water evidence, not a binary flood-depth or flood-only mask",
+      "Cloud cover and exact image acquisition time require attention",
+      "Georeferenced cartographic evidence, not a classified binary inundation mask"
+    ],
+    "source_locator": "PDF page 1: image date, issue date and map ID 2023/FL/DL/07-VAP/13-Jul-2023; stale URL filename contains 12_07"
+  },
+  "nrsc_shastri_park": {
+    "name": "NRSC flood inundation / standing water: Shastri Park Metro Depot, 13 July 2023",
+    "provider": "NRSC / ISRO, Disaster Management Support",
+    "url": "https://www.nrsc.gov.in/nrscnew/assets/pdf/maps_dms/dl_2023_12_07_0008_VAP.pdf",
+    "documentation_url": "https://www.nrsc.gov.in/nrscnew/2023_SikkimFloods.php",
+    "license": "Map marked For official use; open redistribution licence not established",
+    "original_crs": "EPSG:32644 (embedded map projection); GPTS control points in WGS84 latitude/longitude",
+    "spatial_resolution": null,
+    "temporal_coverage": "Map labelled 13 July 2023; filename/map identifier contains 12-Jul-2023; acquisition timestamp unresolved",
+    "category": "flood",
+    "kind": "document",
+    "raw_name": "nrsc_shastri_park_20230713.pdf",
+    "classification": "satellite_map_evidence",
+    "limitations": [
+      "Flood/standing-water evidence, not a binary flood-depth or flood-only mask",
+      "Georeferenced cartographic evidence, not a classified binary inundation mask"
+    ]
+  }
+}
