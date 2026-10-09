@@ -5,6 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.api.replay import router
 from app.api.consequences import router as consequences_router
+from app.api.evacuation import router as evacuation_router
 
 app = FastAPI(title="DANGER MARK+ Demo Replay", version="0.1.0",
               description="Synthetic replay and separate assumption-labelled flood consequences. Not operationally validated.")
@@ -16,3 +17,4 @@ app.add_middleware(CORSMiddleware, allow_origins=[value.strip() for value in ori
                    allow_methods=["GET", "POST"], allow_headers=["Accept", "Content-Type"], allow_credentials=False)
 app.include_router(router)
 app.include_router(consequences_router)
+app.include_router(evacuation_router)

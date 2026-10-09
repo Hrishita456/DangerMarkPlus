@@ -1,0 +1,882 @@
+{
+  "run_id": "analysis-1616d67b7b28fb2442d9747f",
+  "planning_id": "evacuation-0ef6b5b986d235ed86baed02",
+  "algorithm_version": "phase4-1.0.1",
+  "counts": {
+    "affected_localities": 12,
+    "feasible_plans": 12,
+    "backup_routes": 8,
+    "capacity_unknown": 12,
+    "candidate_sites": 269,
+    "eligible_candidate_sites": 258,
+    "no_safe_route": 0,
+    "no_safe_site": 0,
+    "insufficient_known_capacity": 0,
+    "backup_unavailable": 4
+  },
+  "configuration": {
+    "mode": "road_vehicle",
+    "site_clearance_m": 100.0,
+    "road_attachment_tolerance_m": 10.0,
+    "snap_max_m": 150.0,
+    "connector_speed_kph": 5.0,
+    "speed_factor": 0.5,
+    "default_speed_kph": 20.0,
+    "class_speeds_kph": {
+      "motorway": 60.0,
+      "motorway_link": 30.0,
+      "trunk": 50.0,
+      "trunk_link": 30.0,
+      "primary": 40.0,
+      "primary_link": 25.0,
+      "secondary": 35.0,
+      "secondary_link": 25.0,
+      "tertiary": 30.0,
+      "tertiary_link": 20.0,
+      "residential": 20.0,
+      "unclassified": 20.0,
+      "living_street": 10.0,
+      "service": 10.0,
+      "road": 20.0
+    },
+    "excluded_road_statuses": [
+      "closure_candidate",
+      "uncertain_structure",
+      "unknown",
+      "near_flood"
+    ],
+    "eligible_types": [
+      "school",
+      "college",
+      "university",
+      "hospital",
+      "community_centre",
+      "townhall",
+      "public_building",
+      "government",
+      "government_office",
+      "social_facility"
+    ],
+    "ranking": {
+      "minutes": 1.0,
+      "kilometres": 0.1,
+      "unverified": 5.0,
+      "unknown_capacity": 5.0,
+      "prior_assignment": 10.0
+    },
+    "mobilization_minutes": 20.0,
+    "safety_minutes": 10.0,
+    "closure_times": {},
+    "closure_time_source": "scenario_assumption",
+    "locality_demands_people": {},
+    "priority": {
+      "severity": {
+        "critical": 50.0,
+        "high": 35.0,
+        "warning": 15.0,
+        "safe": 0.0,
+        "unknown": 20.0
+      },
+      "access": {
+        "isolated": 35.0,
+        "at_risk_of_isolation": 25.0,
+        "degraded_access": 10.0,
+        "accessible": 0.0,
+        "unknown": 15.0
+      },
+      "exposure_per_1000": 2.0,
+      "exposure_cap": 15.0,
+      "no_route": 25.0,
+      "capacity_unknown": 5.0,
+      "deadline_elapsed": 30.0,
+      "deadline_soon": 15.0,
+      "urgency_minutes": 60.0,
+      "critical_threshold": 75.0,
+      "high_threshold": 50.0,
+      "moderate_threshold": 20.0
+    }
+  },
+  "timing_seconds": {
+    "initial_request_including_cache_check": 20.051,
+    "cached_request": 0.703,
+    "independent_compute": 10.716
+  },
+  "checks": {
+    "independent_recomputation_identical": true,
+    "phase3_output_checksums_unchanged": true,
+    "all_planning_api_views_passed": true,
+    "excluded_edges_absent": true,
+    "backups_network_link_disjoint": true,
+    "web_route_geometry_valid": true,
+    "unknown_demands_and_deadlines_preserved": true
+  },
+  "provenance": {
+    "consequence_output_hashes": {
+      "summary": "d2da1d8f293c7d4b47129d10f84489a86d3a6711582f7d3b7868a9bfa2304519",
+      "localities": "6fa9ca1984fd52ace4b01143a080d40fe3e4b1dfba9b17e460854eb275148567",
+      "road-impacts": "9fe6ff53eaa79b9f7c01ff0fd7453c8c863f125de72edc6c3b0265c46f12fce6",
+      "flood": "157c864b5ca0800f4c04d7088ce3b6de32ca43c09aff810e9ec59bf4bb66db3a"
+    },
+    "bundle_sha256": "84111d93779e94457076f56143494f0842be1b56e42b447b740b5fb41116fa4b",
+    "replay_at": "2023-07-13T18:00:00+05:30",
+    "flood_source": "terrain_approximation",
+    "phase3_assumptions": [
+      "Illustrative uniform 205 m EGM2008 surface, chosen as a round hypothetical level above typical river DSM cells; not calibrated to CWC 208.66 m or NRSC imagery.",
+      "Four-neighbour low DSM cells connected to mapped river seeds; no hydraulics, levee or drainage model.",
+      "Water bodies are included; this is not an estimate of newly inundated dry land.",
+      "Nodata blocks propagation and remains unknown, never known dry.",
+      "Locality buffers are overlapping analysis neighbourhoods, not administrative areas; never sum their population estimates.",
+      "Gateways are clear nodes in the inside boundary ring of the largest baseline weak component; not verified destinations.",
+      "Localities snap once to the nearest baseline node within configured limit; connector passability is not surveyed.",
+      "Optimistic graph removes at-grade closure candidates; cautious graph also removes uncertain structures and outside-coverage edges.",
+      "Pre-existing disconnection, absent gateways or excessive snapping distance yield unknown, not flood-caused isolation.",
+      "All road counts are directed edges, including opposite directions; not unique physical roads."
+    ],
+    "phase3_limitations": [
+      "Illustrative terrain scenario, not a validated July 2023 reconstruction.",
+      "CWC 208.66 m gauge datum is not reconciled with DSM EGM2008; it is not used as the terrain threshold.",
+      "NRSC RGB evidence is reference imagery only, not a classified mask or calibration target.",
+      "Approximately 1 km WorldPop information; 90 m alignment adds no demographic detail.",
+      "Scenario consequences are not operational evacuation advice.",
+      "Only one assumed stage; no inferred arrival times, forecast stages, shelters, evacuation routes or exit deadlines.",
+      "DSM contains buildings/vegetation; river channel water is included, and levees/decks/bathymetry are unresolved.",
+      "30 arc-seconds (approximately 1km at equator); effective information remains approximately 1km",
+      "Known flood coverage and known population coverage are separate; uncovered areas remain unknown.",
+      "Historical OSM includes pre-existing disconnected components, uncertain access and no turn restrictions."
+    ]
+  },
+  "plans": [
+    {
+      "id": "osm/node/1431203566",
+      "name": "Tibetan Colony",
+      "destination": {
+        "id": "osm/node/10127860587",
+        "name": "TCV DAY School Samyeling",
+        "type": "school",
+        "source": "OpenStreetMap",
+        "verification_status": "unverified_candidate",
+        "capacity_source": null,
+        "capacity": null,
+        "suitability": "eligible_candidate",
+        "flood_clearance_m": 174.6,
+        "reasons": [
+          "Outside flood clearance, known coverage, permitted baseline attachment; still unverified."
+        ],
+        "assigned_locality_ids": [
+          "osm/node/1431203566"
+        ],
+        "reserved_people": 0,
+        "available_capacity": null,
+        "capacity_status": "unknown",
+        "attachment_distance_m": 17.3
+      },
+      "demand_people": null,
+      "capacity_status": "unknown",
+      "priority": {
+        "score": 46.2,
+        "level": "moderate",
+        "contributions": {
+          "severity": 20.0,
+          "access": 15.0,
+          "approximate_buffer_exposure": 6.2,
+          "capacity_unknown": 5.0
+        },
+        "reasons": [
+          "severity: +20",
+          "access: +15",
+          "approximate_buffer_exposure: +6.2",
+          "capacity_unknown: +5"
+        ],
+        "note": "Approximate buffer exposure is a risk indicator, not evacuation demand. Unknown timing adds no invented urgency."
+      },
+      "distance_km": 0.129,
+      "travel_minutes": 1.183,
+      "backup_status": "unavailable",
+      "backup_travel_minutes": null,
+      "deadline": {
+        "deadline_status": "unavailable",
+        "latest_departure": null,
+        "latest_vehicle_departure": null,
+        "urgency": "unknown",
+        "limiting_edge_id": null,
+        "reasons": [
+          "No route-specific closure times; static flood extent cannot establish a departure deadline."
+        ]
+      },
+      "outcomes": [
+        "capacity_unknown",
+        "backup_unavailable"
+      ]
+    },
+    {
+      "id": "osm/node/2812851723",
+      "name": "Janta Garden",
+      "destination": {
+        "id": "osm/node/5242148783",
+        "name": "Government Primary School for the Deaf",
+        "type": "school",
+        "source": "OpenStreetMap",
+        "verification_status": "unverified_candidate",
+        "capacity_source": null,
+        "capacity": null,
+        "suitability": "eligible_candidate",
+        "flood_clearance_m": 270.5,
+        "reasons": [
+          "Outside flood clearance, known coverage, permitted baseline attachment; still unverified."
+        ],
+        "assigned_locality_ids": [
+          "osm/node/2812851723"
+        ],
+        "reserved_people": 0,
+        "available_capacity": null,
+        "capacity_status": "unknown",
+        "attachment_distance_m": 39.5
+      },
+      "demand_people": null,
+      "capacity_status": "unknown",
+      "priority": {
+        "score": 34.0,
+        "level": "moderate",
+        "contributions": {
+          "severity": 15.0,
+          "access": 10.0,
+          "approximate_buffer_exposure": 4.0,
+          "capacity_unknown": 5.0
+        },
+        "reasons": [
+          "severity: +15",
+          "access: +10",
+          "approximate_buffer_exposure: +4",
+          "capacity_unknown: +5"
+        ],
+        "note": "Approximate buffer exposure is a risk indicator, not evacuation demand. Unknown timing adds no invented urgency."
+      },
+      "distance_km": 0.242,
+      "travel_minutes": 1.851,
+      "backup_status": "available",
+      "backup_travel_minutes": 3.734,
+      "deadline": {
+        "deadline_status": "unavailable",
+        "latest_departure": null,
+        "latest_vehicle_departure": null,
+        "urgency": "unknown",
+        "limiting_edge_id": null,
+        "reasons": [
+          "No route-specific closure times; static flood extent cannot establish a departure deadline."
+        ]
+      },
+      "outcomes": [
+        "capacity_unknown"
+      ]
+    },
+    {
+      "id": "osm/node/2812873842",
+      "name": "Samaspur",
+      "destination": {
+        "id": "osm/node/5242150470",
+        "name": "School for Mentally Retarded Children",
+        "type": "school",
+        "source": "OpenStreetMap",
+        "verification_status": "unverified_candidate",
+        "capacity_source": null,
+        "capacity": null,
+        "suitability": "eligible_candidate",
+        "flood_clearance_m": 288.9,
+        "reasons": [
+          "Outside flood clearance, known coverage, permitted baseline attachment; still unverified."
+        ],
+        "assigned_locality_ids": [
+          "osm/node/2812873842"
+        ],
+        "reserved_people": 0,
+        "available_capacity": null,
+        "capacity_status": "unknown",
+        "attachment_distance_m": 44.7
+      },
+      "demand_people": null,
+      "capacity_status": "unknown",
+      "priority": {
+        "score": 33.8,
+        "level": "moderate",
+        "contributions": {
+          "severity": 15.0,
+          "access": 10.0,
+          "approximate_buffer_exposure": 3.8,
+          "capacity_unknown": 5.0
+        },
+        "reasons": [
+          "severity: +15",
+          "access: +10",
+          "approximate_buffer_exposure: +3.8",
+          "capacity_unknown: +5"
+        ],
+        "note": "Approximate buffer exposure is a risk indicator, not evacuation demand. Unknown timing adds no invented urgency."
+      },
+      "distance_km": 0.632,
+      "travel_minutes": 4.132,
+      "backup_status": "unavailable",
+      "backup_travel_minutes": null,
+      "deadline": {
+        "deadline_status": "unavailable",
+        "latest_departure": null,
+        "latest_vehicle_departure": null,
+        "urgency": "unknown",
+        "limiting_edge_id": null,
+        "reasons": [
+          "No route-specific closure times; static flood extent cannot establish a departure deadline."
+        ]
+      },
+      "outcomes": [
+        "capacity_unknown",
+        "backup_unavailable"
+      ]
+    },
+    {
+      "id": "osm/node/3615440025",
+      "name": "Safeda Basti",
+      "destination": {
+        "id": "osm/way/949757088",
+        "name": "Sai Bhavan School",
+        "type": "school",
+        "source": "OpenStreetMap",
+        "verification_status": "unverified_candidate",
+        "capacity_source": null,
+        "capacity": null,
+        "suitability": "eligible_candidate",
+        "flood_clearance_m": 333.7,
+        "reasons": [
+          "Outside flood clearance, known coverage, permitted baseline attachment; still unverified."
+        ],
+        "assigned_locality_ids": [
+          "osm/node/3615440025"
+        ],
+        "reserved_people": 0,
+        "available_capacity": null,
+        "capacity_status": "unknown",
+        "attachment_distance_m": 46.9
+      },
+      "demand_people": null,
+      "capacity_status": "unknown",
+      "priority": {
+        "score": 33.0,
+        "level": "moderate",
+        "contributions": {
+          "severity": 15.0,
+          "access": 10.0,
+          "approximate_buffer_exposure": 3.0,
+          "capacity_unknown": 5.0
+        },
+        "reasons": [
+          "severity: +15",
+          "access: +10",
+          "approximate_buffer_exposure: +3",
+          "capacity_unknown: +5"
+        ],
+        "note": "Approximate buffer exposure is a risk indicator, not evacuation demand. Unknown timing adds no invented urgency."
+      },
+      "distance_km": 0.676,
+      "travel_minutes": 3.491,
+      "backup_status": "available",
+      "backup_travel_minutes": 9.596,
+      "deadline": {
+        "deadline_status": "unavailable",
+        "latest_departure": null,
+        "latest_vehicle_departure": null,
+        "urgency": "unknown",
+        "limiting_edge_id": null,
+        "reasons": [
+          "No route-specific closure times; static flood extent cannot establish a departure deadline."
+        ]
+      },
+      "outcomes": [
+        "capacity_unknown"
+      ]
+    },
+    {
+      "id": "osm/node/1184383537",
+      "name": "Majnu Ka Tila",
+      "destination": {
+        "id": "osm/way/292167792",
+        "name": null,
+        "type": "school",
+        "source": "OpenStreetMap",
+        "verification_status": "unverified_candidate",
+        "capacity_source": null,
+        "capacity": null,
+        "suitability": "eligible_candidate",
+        "flood_clearance_m": 235.1,
+        "reasons": [
+          "Outside flood clearance, known coverage, permitted baseline attachment; still unverified."
+        ],
+        "assigned_locality_ids": [
+          "osm/node/1184383537"
+        ],
+        "reserved_people": 0,
+        "available_capacity": null,
+        "capacity_status": "unknown",
+        "attachment_distance_m": 44.2
+      },
+      "demand_people": null,
+      "capacity_status": "unknown",
+      "priority": {
+        "score": 32.8,
+        "level": "moderate",
+        "contributions": {
+          "severity": 15.0,
+          "access": 10.0,
+          "approximate_buffer_exposure": 2.8,
+          "capacity_unknown": 5.0
+        },
+        "reasons": [
+          "severity: +15",
+          "access: +10",
+          "approximate_buffer_exposure: +2.8",
+          "capacity_unknown: +5"
+        ],
+        "note": "Approximate buffer exposure is a risk indicator, not evacuation demand. Unknown timing adds no invented urgency."
+      },
+      "distance_km": 0.337,
+      "travel_minutes": 2.256,
+      "backup_status": "available",
+      "backup_travel_minutes": 2.396,
+      "deadline": {
+        "deadline_status": "unavailable",
+        "latest_departure": null,
+        "latest_vehicle_departure": null,
+        "urgency": "unknown",
+        "limiting_edge_id": null,
+        "reasons": [
+          "No route-specific closure times; static flood extent cannot establish a departure deadline."
+        ]
+      },
+      "outcomes": [
+        "capacity_unknown"
+      ]
+    },
+    {
+      "id": "osm/node/2936616684",
+      "name": "Aruna Nagar",
+      "destination": {
+        "id": "osm/way/290116489",
+        "name": "Missionaries of Charity",
+        "type": "social_facility",
+        "source": "OpenStreetMap",
+        "verification_status": "unverified_candidate",
+        "capacity_source": null,
+        "capacity": null,
+        "suitability": "eligible_candidate",
+        "flood_clearance_m": 293.4,
+        "reasons": [
+          "Outside flood clearance, known coverage, permitted baseline attachment; still unverified."
+        ],
+        "assigned_locality_ids": [
+          "osm/node/2936616684"
+        ],
+        "reserved_people": 0,
+        "available_capacity": null,
+        "capacity_status": "unknown",
+        "attachment_distance_m": 68.8
+      },
+      "demand_people": null,
+      "capacity_status": "unknown",
+      "priority": {
+        "score": 32.6,
+        "level": "moderate",
+        "contributions": {
+          "severity": 15.0,
+          "access": 10.0,
+          "approximate_buffer_exposure": 2.6,
+          "capacity_unknown": 5.0
+        },
+        "reasons": [
+          "severity: +15",
+          "access: +10",
+          "approximate_buffer_exposure: +2.6",
+          "capacity_unknown: +5"
+        ],
+        "note": "Approximate buffer exposure is a risk indicator, not evacuation demand. Unknown timing adds no invented urgency."
+      },
+      "distance_km": 0.973,
+      "travel_minutes": 4.326,
+      "backup_status": "available",
+      "backup_travel_minutes": 5.066,
+      "deadline": {
+        "deadline_status": "unavailable",
+        "latest_departure": null,
+        "latest_vehicle_departure": null,
+        "urgency": "unknown",
+        "limiting_edge_id": null,
+        "reasons": [
+          "No route-specific closure times; static flood extent cannot establish a departure deadline."
+        ]
+      },
+      "outcomes": [
+        "capacity_unknown"
+      ]
+    },
+    {
+      "id": "osm/node/2812726577",
+      "name": "Mayur Vihar I Pocket - 4",
+      "destination": {
+        "id": "osm/way/1085815544",
+        "name": null,
+        "type": "school",
+        "source": "OpenStreetMap",
+        "verification_status": "unverified_candidate",
+        "capacity_source": null,
+        "capacity": null,
+        "suitability": "eligible_candidate",
+        "flood_clearance_m": 465.4,
+        "reasons": [
+          "Outside flood clearance, known coverage, permitted baseline attachment; still unverified."
+        ],
+        "assigned_locality_ids": [
+          "osm/node/2812726577"
+        ],
+        "reserved_people": 0,
+        "available_capacity": null,
+        "capacity_status": "unknown",
+        "attachment_distance_m": 56.7
+      },
+      "demand_people": null,
+      "capacity_status": "unknown",
+      "priority": {
+        "score": 32.2,
+        "level": "moderate",
+        "contributions": {
+          "severity": 15.0,
+          "access": 10.0,
+          "approximate_buffer_exposure": 2.2,
+          "capacity_unknown": 5.0
+        },
+        "reasons": [
+          "severity: +15",
+          "access: +10",
+          "approximate_buffer_exposure: +2.2",
+          "capacity_unknown: +5"
+        ],
+        "note": "Approximate buffer exposure is a risk indicator, not evacuation demand. Unknown timing adds no invented urgency."
+      },
+      "distance_km": 0.324,
+      "travel_minutes": 2.633,
+      "backup_status": "unavailable",
+      "backup_travel_minutes": null,
+      "deadline": {
+        "deadline_status": "unavailable",
+        "latest_departure": null,
+        "latest_vehicle_departure": null,
+        "urgency": "unknown",
+        "limiting_edge_id": null,
+        "reasons": [
+          "No route-specific closure times; static flood extent cannot establish a departure deadline."
+        ]
+      },
+      "outcomes": [
+        "capacity_unknown",
+        "backup_unavailable"
+      ]
+    },
+    {
+      "id": "osm/node/2936616685",
+      "name": "New Chandrawal",
+      "destination": {
+        "id": "osm/way/292171527",
+        "name": null,
+        "type": "school",
+        "source": "OpenStreetMap",
+        "verification_status": "unverified_candidate",
+        "capacity_source": null,
+        "capacity": null,
+        "suitability": "eligible_candidate",
+        "flood_clearance_m": 201.7,
+        "reasons": [
+          "Outside flood clearance, known coverage, permitted baseline attachment; still unverified."
+        ],
+        "assigned_locality_ids": [
+          "osm/node/2936616685"
+        ],
+        "reserved_people": 0,
+        "available_capacity": null,
+        "capacity_status": "unknown",
+        "attachment_distance_m": 44.0
+      },
+      "demand_people": null,
+      "capacity_status": "unknown",
+      "priority": {
+        "score": 32.0,
+        "level": "moderate",
+        "contributions": {
+          "severity": 15.0,
+          "access": 10.0,
+          "approximate_buffer_exposure": 2.0,
+          "capacity_unknown": 5.0
+        },
+        "reasons": [
+          "severity: +15",
+          "access: +10",
+          "approximate_buffer_exposure: +2",
+          "capacity_unknown: +5"
+        ],
+        "note": "Approximate buffer exposure is a risk indicator, not evacuation demand. Unknown timing adds no invented urgency."
+      },
+      "distance_km": 0.223,
+      "travel_minutes": 1.824,
+      "backup_status": "unavailable",
+      "backup_travel_minutes": null,
+      "deadline": {
+        "deadline_status": "unavailable",
+        "latest_departure": null,
+        "latest_vehicle_departure": null,
+        "urgency": "unknown",
+        "limiting_edge_id": null,
+        "reasons": [
+          "No route-specific closure times; static flood extent cannot establish a departure deadline."
+        ]
+      },
+      "outcomes": [
+        "capacity_unknown",
+        "backup_unavailable"
+      ]
+    },
+    {
+      "id": "osm/node/10815246203",
+      "name": "Pandav Nagar",
+      "destination": {
+        "id": "osm/way/554625250",
+        "name": "Govt. School",
+        "type": "school",
+        "source": "OpenStreetMap",
+        "verification_status": "unverified_candidate",
+        "capacity_source": null,
+        "capacity": null,
+        "suitability": "eligible_candidate",
+        "flood_clearance_m": 724.2,
+        "reasons": [
+          "Outside flood clearance, known coverage, permitted baseline attachment; still unverified."
+        ],
+        "assigned_locality_ids": [
+          "osm/node/10815246203"
+        ],
+        "reserved_people": 0,
+        "available_capacity": null,
+        "capacity_status": "unknown",
+        "attachment_distance_m": 18.5
+      },
+      "demand_people": null,
+      "capacity_status": "unknown",
+      "priority": {
+        "score": 30.0,
+        "level": "moderate",
+        "contributions": {
+          "severity": 15.0,
+          "access": 10.0,
+          "approximate_buffer_exposure": 0.0,
+          "capacity_unknown": 5.0
+        },
+        "reasons": [
+          "severity: +15",
+          "access: +10",
+          "capacity_unknown: +5"
+        ],
+        "note": "Approximate buffer exposure is a risk indicator, not evacuation demand. Unknown timing adds no invented urgency."
+      },
+      "distance_km": 0.09,
+      "travel_minutes": 0.717,
+      "backup_status": "available",
+      "backup_travel_minutes": 1.01,
+      "deadline": {
+        "deadline_status": "unavailable",
+        "latest_departure": null,
+        "latest_vehicle_departure": null,
+        "urgency": "unknown",
+        "limiting_edge_id": null,
+        "reasons": [
+          "No route-specific closure times; static flood extent cannot establish a departure deadline."
+        ]
+      },
+      "outcomes": [
+        "capacity_unknown"
+      ]
+    },
+    {
+      "id": "osm/node/10818928355",
+      "name": "Chandrawal",
+      "destination": {
+        "id": "osm/node/2958012079",
+        "name": "Department of Social Work",
+        "type": "government_office",
+        "source": "OpenStreetMap",
+        "verification_status": "unverified_candidate",
+        "capacity_source": null,
+        "capacity": null,
+        "suitability": "eligible_candidate",
+        "flood_clearance_m": 1193.1,
+        "reasons": [
+          "Outside flood clearance, known coverage, permitted baseline attachment; still unverified."
+        ],
+        "assigned_locality_ids": [
+          "osm/node/10818928355"
+        ],
+        "reserved_people": 0,
+        "available_capacity": null,
+        "capacity_status": "unknown",
+        "attachment_distance_m": 29.0
+      },
+      "demand_people": null,
+      "capacity_status": "unknown",
+      "priority": {
+        "score": 30.0,
+        "level": "moderate",
+        "contributions": {
+          "severity": 15.0,
+          "access": 10.0,
+          "approximate_buffer_exposure": 0.0,
+          "capacity_unknown": 5.0
+        },
+        "reasons": [
+          "severity: +15",
+          "access: +10",
+          "capacity_unknown: +5"
+        ],
+        "note": "Approximate buffer exposure is a risk indicator, not evacuation demand. Unknown timing adds no invented urgency."
+      },
+      "distance_km": 1.037,
+      "travel_minutes": 4.062,
+      "backup_status": "available",
+      "backup_travel_minutes": 24.147,
+      "deadline": {
+        "deadline_status": "unavailable",
+        "latest_departure": null,
+        "latest_vehicle_departure": null,
+        "urgency": "unknown",
+        "limiting_edge_id": null,
+        "reasons": [
+          "No route-specific closure times; static flood extent cannot establish a departure deadline."
+        ]
+      },
+      "outcomes": [
+        "capacity_unknown"
+      ]
+    },
+    {
+      "id": "osm/node/2812726578",
+      "name": "Patparganj",
+      "destination": {
+        "id": "osm/node/9554253936",
+        "name": "Bapu Public School",
+        "type": "school",
+        "source": "OpenStreetMap",
+        "verification_status": "unverified_candidate",
+        "capacity_source": null,
+        "capacity": null,
+        "suitability": "eligible_candidate",
+        "flood_clearance_m": 516.6,
+        "reasons": [
+          "Outside flood clearance, known coverage, permitted baseline attachment; still unverified."
+        ],
+        "assigned_locality_ids": [
+          "osm/node/2812726578"
+        ],
+        "reserved_people": 0,
+        "available_capacity": null,
+        "capacity_status": "unknown",
+        "attachment_distance_m": 28.9
+      },
+      "demand_people": null,
+      "capacity_status": "unknown",
+      "priority": {
+        "score": 30.0,
+        "level": "moderate",
+        "contributions": {
+          "severity": 15.0,
+          "access": 10.0,
+          "approximate_buffer_exposure": 0.0,
+          "capacity_unknown": 5.0
+        },
+        "reasons": [
+          "severity: +15",
+          "access: +10",
+          "capacity_unknown: +5"
+        ],
+        "note": "Approximate buffer exposure is a risk indicator, not evacuation demand. Unknown timing adds no invented urgency."
+      },
+      "distance_km": 0.34,
+      "travel_minutes": 1.975,
+      "backup_status": "available",
+      "backup_travel_minutes": 3.688,
+      "deadline": {
+        "deadline_status": "unavailable",
+        "latest_departure": null,
+        "latest_vehicle_departure": null,
+        "urgency": "unknown",
+        "limiting_edge_id": null,
+        "reasons": [
+          "No route-specific closure times; static flood extent cannot establish a departure deadline."
+        ]
+      },
+      "outcomes": [
+        "capacity_unknown"
+      ]
+    },
+    {
+      "id": "osm/node/943748969",
+      "name": "Kashmere Gate",
+      "destination": {
+        "id": "osm/node/9162549287",
+        "name": "Office of the Chief Electoral Officer",
+        "type": "government_office",
+        "source": "OpenStreetMap",
+        "verification_status": "unverified_candidate",
+        "capacity_source": null,
+        "capacity": null,
+        "suitability": "eligible_candidate",
+        "flood_clearance_m": 555.6,
+        "reasons": [
+          "Outside flood clearance, known coverage, permitted baseline attachment; still unverified."
+        ],
+        "assigned_locality_ids": [
+          "osm/node/943748969"
+        ],
+        "reserved_people": 0,
+        "available_capacity": null,
+        "capacity_status": "unknown",
+        "attachment_distance_m": 38.4
+      },
+      "demand_people": null,
+      "capacity_status": "unknown",
+      "priority": {
+        "score": 30.0,
+        "level": "moderate",
+        "contributions": {
+          "severity": 15.0,
+          "access": 10.0,
+          "approximate_buffer_exposure": 0.0,
+          "capacity_unknown": 5.0
+        },
+        "reasons": [
+          "severity: +15",
+          "access: +10",
+          "capacity_unknown: +5"
+        ],
+        "note": "Approximate buffer exposure is a risk indicator, not evacuation demand. Unknown timing adds no invented urgency."
+      },
+      "distance_km": 0.761,
+      "travel_minutes": 4.898,
+      "backup_status": "available",
+      "backup_travel_minutes": 10.32,
+      "deadline": {
+        "deadline_status": "unavailable",
+        "latest_departure": null,
+        "latest_vehicle_departure": null,
+        "urgency": "unknown",
+        "limiting_edge_id": null,
+        "reasons": [
+          "No route-specific closure times; static flood extent cannot establish a departure deadline."
+        ]
+      },
+      "outcomes": [
+        "capacity_unknown"
+      ]
+    }
+  ]
+}

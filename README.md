@@ -10,6 +10,8 @@ Phase 3 adds a separate [deterministic flood-consequences engine](docs/phase-3.m
 
 ## Run locally
 
+Phase 4 adds a separate [evacuation planning engine](docs/phase-4.md) over saved Phase 3 results. It provides provisional destination assignments, primary/independent backup routes and explicit capacity/timing uncertainty. See [pilot planning results](docs/phase-4-results.json). The frontend remains on its original demo replay.
+
 Tested with Python 3.12.3, Node 22.22.1 and pnpm 10.34.3. The backend supports Python 3.11+; use Node 22.18+ for the frontend's TypeScript test command. Run the two services in separate terminals.
 
 Backend, starting from this repository root:
