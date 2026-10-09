@@ -6,6 +6,8 @@ The Figma frontend remains in `Amazon/`. Its stylesheet, branding, desktop layou
 
 Phase 2 adds a separate [Delhi/Yamuna dataset pipeline](data/README.md): catalogued sources, offline geospatial preprocessing, and validation. The real datasets are not connected to the synthetic replay. See the [Phase 2 handoff](docs/phase-2.md) for the resumed implementation, source inventory, checks, and limitations.
 
+Phase 3 adds a separate [deterministic flood-consequences engine](docs/phase-3.md), with population overlap, road impacts, locality accessibility and run-oriented APIs. Its pilot uses an explicitly hypothetical terrain surface, not a validated historical flood reconstruction. The existing frontend and demo replay remain unchanged. See [computed results](docs/phase-3-results.json) for assumptions, metrics and reproducibility checks.
+
 ## Run locally
 
 Tested with Python 3.12.3, Node 22.22.1 and pnpm 10.34.3. The backend supports Python 3.11+; use Node 22.18+ for the frontend's TypeScript test command. Run the two services in separate terminals.

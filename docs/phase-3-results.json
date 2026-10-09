@@ -1,0 +1,367 @@
+{
+  "summary": {
+    "accessibility_counts": {
+      "accessible": 73,
+      "degraded_access": 11,
+      "unknown": 1
+    },
+    "algorithm_version": "phase3-1.0.2",
+    "assumptions": [
+      "Illustrative uniform 205 m EGM2008 surface, chosen as a round hypothetical level above typical river DSM cells; not calibrated to CWC 208.66 m or NRSC imagery.",
+      "Four-neighbour low DSM cells connected to mapped river seeds; no hydraulics, levee or drainage model.",
+      "Water bodies are included; this is not an estimate of newly inundated dry land.",
+      "Nodata blocks propagation and remains unknown, never known dry.",
+      "Locality buffers are overlapping analysis neighbourhoods, not administrative areas; never sum their population estimates.",
+      "Gateways are clear nodes in the inside boundary ring of the largest baseline weak component; not verified destinations.",
+      "Localities snap once to the nearest baseline node within configured limit; connector passability is not surveyed.",
+      "Optimistic graph removes at-grade closure candidates; cautious graph also removes uncertain structures and outside-coverage edges.",
+      "Pre-existing disconnection, absent gateways or excessive snapping distance yield unknown, not flood-caused isolation.",
+      "All road counts are directed edges, including opposite directions; not unique physical roads."
+    ],
+    "bundle_sha256": "84111d93779e94457076f56143494f0842be1b56e42b447b740b5fb41116fa4b",
+    "flood_known_coverage_fraction": 0.998597,
+    "flooded_area_km2": 11.395,
+    "gateway_count": 1777,
+    "is_demo": false,
+    "limitations": [
+      "Illustrative terrain scenario, not a validated July 2023 reconstruction.",
+      "CWC 208.66 m gauge datum is not reconciled with DSM EGM2008; it is not used as the terrain threshold.",
+      "NRSC RGB evidence is reference imagery only, not a classified mask or calibration target.",
+      "Approximately 1 km WorldPop information; 90 m alignment adds no demographic detail.",
+      "Scenario consequences are not operational evacuation advice.",
+      "Only one assumed stage; no inferred arrival times, forecast stages, shelters, evacuation routes or exit deadlines.",
+      "DSM contains buildings/vegetation; river channel water is included, and levees/decks/bathymetry are unresolved.",
+      "30 arc-seconds (approximately 1km at equator); effective information remains approximately 1km",
+      "Known flood coverage and known population coverage are separate; uncovered areas remain unknown.",
+      "Historical OSM includes pre-existing disconnected components, uncertain access and no turn restrictions."
+    ],
+    "locality_counts": {
+      "safe": 73,
+      "unknown": 1,
+      "warning": 11
+    },
+    "locality_exposure_counts": {
+      "buffers_with_estimated_exposure": 8,
+      "flooded_points": 0,
+      "total": 85,
+      "unknown_points": 0
+    },
+    "operationally_validated": false,
+    "population": {
+      "assumptions": [
+        "Uniform population within each native pixel; people-per-pixel counts, not density.",
+        "30 arc-seconds (approximately 1km at equator); effective information remains approximately 1km",
+        "Raster model population is not event-day occupancy or evacuation demand."
+      ],
+      "coverage_fraction": 1.0,
+      "estimate_kind": "known_coverage_estimate",
+      "exposed_population": 72900,
+      "population_source": "data/raw/delhi_yamuna/population/worldpop_2023_1km_native.tif",
+      "rounding_people": 100
+    },
+    "region_id": "delhi_yamuna",
+    "replay_at": "2023-07-13T18:00:00+05:30",
+    "road_count_unit": "directed_graph_edges",
+    "road_counts": {
+      "closure_candidate": 476,
+      "near_flood": 171,
+      "unaffected": 70741,
+      "uncertain_structure": 30,
+      "unknown": 14978
+    },
+    "run_id": "analysis-1616d67b7b28fb2442d9747f",
+    "scenario": {
+      "bundle": "data/catalog/bundle.json",
+      "evidence_limitations": [
+        "Illustrative terrain scenario, not a validated July 2023 reconstruction.",
+        "CWC 208.66 m gauge datum is not reconciled with DSM EGM2008; it is not used as the terrain threshold.",
+        "NRSC RGB evidence is reference imagery only, not a classified mask or calibration target.",
+        "Approximately 1 km WorldPop information; 90 m alignment adds no demographic detail."
+      ],
+      "flood": {
+        "assumption": "Illustrative uniform 205 m EGM2008 surface, chosen as a round hypothetical level above typical river DSM cells; not calibrated to CWC 208.66 m or NRSC imagery.",
+        "method": "connected_terrain",
+        "path": null,
+        "seed_buffer_m": 30.0,
+        "seed_waterway_types": [
+          "river"
+        ],
+        "source": "terrain_approximation",
+        "vertical_reference": "EGM2008",
+        "water_surface_m": 205.0
+      },
+      "replay_at": "2023-07-13T18:00:00+05:30",
+      "scenario_id": "yamuna-2023-illustrative-terrain",
+      "stage": "single_assumed_surface",
+      "thresholds": {
+        "closure_intersection_m": 1.0,
+        "gateway_flood_clearance_m": 200.0,
+        "gateway_ring_m": 200.0,
+        "locality_buffer_m": 500.0,
+        "population_rounding_people": 100,
+        "road_near_m": 30.0,
+        "snap_max_m": 300.0,
+        "warning_distance_m": 200.0
+      },
+      "timestamp_meaning": "Historical peak context only; this extent is not an observed reconstruction at that time."
+    },
+    "scenario_id": "yamuna-2023-illustrative-terrain",
+    "source": "terrain_approximation",
+    "stage": "single_assumed_surface",
+    "timestamp_meaning": "Historical peak context only; this extent is not an observed reconstruction at that time."
+  },
+  "timing_seconds": {
+    "initial_request": 29.438,
+    "initial_was_cached": false,
+    "cached_request": 0.007,
+    "read_api": {
+      "summary": 0.056,
+      "localities": 0.006,
+      "road-impacts": 0.204,
+      "flood": 0.004
+    }
+  },
+  "independent_recomputation_identical": true,
+  "api_layers_passed": [
+    "summary",
+    "localities",
+    "road-impacts",
+    "flood"
+  ],
+  "whole_pilot_population_check": {
+    "exposed_population": 2842000,
+    "coverage_fraction": 1.0,
+    "population_source": "data/raw/delhi_yamuna/population/worldpop_2023_1km_native.tif",
+    "estimate_kind": "known_coverage_estimate",
+    "rounding_people": 100,
+    "assumptions": [
+      "Uniform population within each native pixel; people-per-pixel counts, not density.",
+      "30 arc-seconds (approximately 1km at equator); effective information remains approximately 1km",
+      "Raster model population is not event-day occupancy or evacuation demand."
+    ]
+  },
+  "affected_or_unknown_localities": [
+    {
+      "locality_id": "osm/node/10815246203",
+      "name": "Pandav Nagar",
+      "flood_severity": "warning",
+      "accessibility": "degraded_access",
+      "approximate_population_exposure": {
+        "assumptions": [
+          "Uniform population within each native pixel; people-per-pixel counts, not density.",
+          "30 arc-seconds (approximately 1km at equator); effective information remains approximately 1km",
+          "Raster model population is not event-day occupancy or evacuation demand."
+        ],
+        "coverage_fraction": 1.0,
+        "estimate_kind": "known_coverage_estimate",
+        "exposed_population": 0,
+        "population_source": "data/raw/delhi_yamuna/population/worldpop_2023_1km_native.tif",
+        "rounding_people": 100
+      }
+    },
+    {
+      "locality_id": "osm/node/10818928355",
+      "name": "Chandrawal",
+      "flood_severity": "warning",
+      "accessibility": "degraded_access",
+      "approximate_population_exposure": {
+        "assumptions": [
+          "Uniform population within each native pixel; people-per-pixel counts, not density.",
+          "30 arc-seconds (approximately 1km at equator); effective information remains approximately 1km",
+          "Raster model population is not event-day occupancy or evacuation demand."
+        ],
+        "coverage_fraction": 1.0,
+        "estimate_kind": "known_coverage_estimate",
+        "exposed_population": 0,
+        "population_source": "data/raw/delhi_yamuna/population/worldpop_2023_1km_native.tif",
+        "rounding_people": 100
+      }
+    },
+    {
+      "locality_id": "osm/node/1184383537",
+      "name": "Majnu Ka Tila",
+      "flood_severity": "warning",
+      "accessibility": "degraded_access",
+      "approximate_population_exposure": {
+        "assumptions": [
+          "Uniform population within each native pixel; people-per-pixel counts, not density.",
+          "30 arc-seconds (approximately 1km at equator); effective information remains approximately 1km",
+          "Raster model population is not event-day occupancy or evacuation demand."
+        ],
+        "coverage_fraction": 1.0,
+        "estimate_kind": "known_coverage_estimate",
+        "exposed_population": 1400,
+        "population_source": "data/raw/delhi_yamuna/population/worldpop_2023_1km_native.tif",
+        "rounding_people": 100
+      }
+    },
+    {
+      "locality_id": "osm/node/1431203566",
+      "name": "Tibetan Colony",
+      "flood_severity": "unknown",
+      "accessibility": "unknown",
+      "approximate_population_exposure": {
+        "assumptions": [
+          "Uniform population within each native pixel; people-per-pixel counts, not density.",
+          "30 arc-seconds (approximately 1km at equator); effective information remains approximately 1km",
+          "Raster model population is not event-day occupancy or evacuation demand."
+        ],
+        "coverage_fraction": 1.0,
+        "estimate_kind": "known_coverage_estimate",
+        "exposed_population": 3100,
+        "population_source": "data/raw/delhi_yamuna/population/worldpop_2023_1km_native.tif",
+        "rounding_people": 100
+      }
+    },
+    {
+      "locality_id": "osm/node/2812726577",
+      "name": "Mayur Vihar I Pocket - 4",
+      "flood_severity": "warning",
+      "accessibility": "degraded_access",
+      "approximate_population_exposure": {
+        "assumptions": [
+          "Uniform population within each native pixel; people-per-pixel counts, not density.",
+          "30 arc-seconds (approximately 1km at equator); effective information remains approximately 1km",
+          "Raster model population is not event-day occupancy or evacuation demand."
+        ],
+        "coverage_fraction": 1.0,
+        "estimate_kind": "known_coverage_estimate",
+        "exposed_population": 1100,
+        "population_source": "data/raw/delhi_yamuna/population/worldpop_2023_1km_native.tif",
+        "rounding_people": 100
+      }
+    },
+    {
+      "locality_id": "osm/node/2812726578",
+      "name": "Patparganj",
+      "flood_severity": "warning",
+      "accessibility": "degraded_access",
+      "approximate_population_exposure": {
+        "assumptions": [
+          "Uniform population within each native pixel; people-per-pixel counts, not density.",
+          "30 arc-seconds (approximately 1km at equator); effective information remains approximately 1km",
+          "Raster model population is not event-day occupancy or evacuation demand."
+        ],
+        "coverage_fraction": 1.0,
+        "estimate_kind": "known_coverage_estimate",
+        "exposed_population": 0,
+        "population_source": "data/raw/delhi_yamuna/population/worldpop_2023_1km_native.tif",
+        "rounding_people": 100
+      }
+    },
+    {
+      "locality_id": "osm/node/2812851723",
+      "name": "Janta Garden",
+      "flood_severity": "warning",
+      "accessibility": "degraded_access",
+      "approximate_population_exposure": {
+        "assumptions": [
+          "Uniform population within each native pixel; people-per-pixel counts, not density.",
+          "30 arc-seconds (approximately 1km at equator); effective information remains approximately 1km",
+          "Raster model population is not event-day occupancy or evacuation demand."
+        ],
+        "coverage_fraction": 1.0,
+        "estimate_kind": "known_coverage_estimate",
+        "exposed_population": 2000,
+        "population_source": "data/raw/delhi_yamuna/population/worldpop_2023_1km_native.tif",
+        "rounding_people": 100
+      }
+    },
+    {
+      "locality_id": "osm/node/2812873842",
+      "name": "Samaspur",
+      "flood_severity": "warning",
+      "accessibility": "degraded_access",
+      "approximate_population_exposure": {
+        "assumptions": [
+          "Uniform population within each native pixel; people-per-pixel counts, not density.",
+          "30 arc-seconds (approximately 1km at equator); effective information remains approximately 1km",
+          "Raster model population is not event-day occupancy or evacuation demand."
+        ],
+        "coverage_fraction": 1.0,
+        "estimate_kind": "known_coverage_estimate",
+        "exposed_population": 1900,
+        "population_source": "data/raw/delhi_yamuna/population/worldpop_2023_1km_native.tif",
+        "rounding_people": 100
+      }
+    },
+    {
+      "locality_id": "osm/node/2936616684",
+      "name": "Aruna Nagar",
+      "flood_severity": "warning",
+      "accessibility": "degraded_access",
+      "approximate_population_exposure": {
+        "assumptions": [
+          "Uniform population within each native pixel; people-per-pixel counts, not density.",
+          "30 arc-seconds (approximately 1km at equator); effective information remains approximately 1km",
+          "Raster model population is not event-day occupancy or evacuation demand."
+        ],
+        "coverage_fraction": 1.0,
+        "estimate_kind": "known_coverage_estimate",
+        "exposed_population": 1300,
+        "population_source": "data/raw/delhi_yamuna/population/worldpop_2023_1km_native.tif",
+        "rounding_people": 100
+      }
+    },
+    {
+      "locality_id": "osm/node/2936616685",
+      "name": "New Chandrawal",
+      "flood_severity": "warning",
+      "accessibility": "degraded_access",
+      "approximate_population_exposure": {
+        "assumptions": [
+          "Uniform population within each native pixel; people-per-pixel counts, not density.",
+          "30 arc-seconds (approximately 1km at equator); effective information remains approximately 1km",
+          "Raster model population is not event-day occupancy or evacuation demand."
+        ],
+        "coverage_fraction": 1.0,
+        "estimate_kind": "known_coverage_estimate",
+        "exposed_population": 1000,
+        "population_source": "data/raw/delhi_yamuna/population/worldpop_2023_1km_native.tif",
+        "rounding_people": 100
+      }
+    },
+    {
+      "locality_id": "osm/node/3615440025",
+      "name": "Safeda Basti",
+      "flood_severity": "warning",
+      "accessibility": "degraded_access",
+      "approximate_population_exposure": {
+        "assumptions": [
+          "Uniform population within each native pixel; people-per-pixel counts, not density.",
+          "30 arc-seconds (approximately 1km at equator); effective information remains approximately 1km",
+          "Raster model population is not event-day occupancy or evacuation demand."
+        ],
+        "coverage_fraction": 1.0,
+        "estimate_kind": "known_coverage_estimate",
+        "exposed_population": 1500,
+        "population_source": "data/raw/delhi_yamuna/population/worldpop_2023_1km_native.tif",
+        "rounding_people": 100
+      }
+    },
+    {
+      "locality_id": "osm/node/943748969",
+      "name": "Kashmere Gate",
+      "flood_severity": "warning",
+      "accessibility": "degraded_access",
+      "approximate_population_exposure": {
+        "assumptions": [
+          "Uniform population within each native pixel; people-per-pixel counts, not density.",
+          "30 arc-seconds (approximately 1km at equator); effective information remains approximately 1km",
+          "Raster model population is not event-day occupancy or evacuation demand."
+        ],
+        "coverage_fraction": 1.0,
+        "estimate_kind": "known_coverage_estimate",
+        "exposed_population": 0,
+        "population_source": "data/raw/delhi_yamuna/population/worldpop_2023_1km_native.tif",
+        "rounding_people": 100
+      }
+    }
+  ],
+  "output_checksums": {
+    "summary": "d2da1d8f293c7d4b47129d10f84489a86d3a6711582f7d3b7868a9bfa2304519",
+    "localities": "6fa9ca1984fd52ace4b01143a080d40fe3e4b1dfba9b17e460854eb275148567",
+    "road-impacts": "9fe6ff53eaa79b9f7c01ff0fd7453c8c863f125de72edc6c3b0265c46f12fce6",
+    "flood": "157c864b5ca0800f4c04d7088ce3b6de32ca43c09aff810e9ec59bf4bb66db3a"
+  }
+}

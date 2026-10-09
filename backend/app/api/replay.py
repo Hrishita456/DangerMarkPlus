@@ -2,6 +2,8 @@ from fastapi import APIRouter, Response
 
 from app.schemas.replay import Plan, Summary, ZonesResponse
 from app.services import replay
+from app.schemas.consequences import ConsequenceSummary
+from app.services.consequences import read_run
 
 router = APIRouter(prefix="/api/v1")
 
@@ -11,9 +13,11 @@ def health():
     return {"status": "ok", "service": "danger-mark-api", "mode": "demo"}
 
 
-@router.get("/runs/{run_id}/summary", response_model=Summary)
+@router.get("/runs/{run_id}/summary", response_model=Summary | ConsequenceSummary)
 def summary(run_id: str, response: Response, frame: str = "evacuate"):
     response.headers["Cache-Control"] = "no-store"
+    if run_id.startswith("analysis-"):
+        return read_run(run_id, "summary")
     return replay.get_summary(*replay.get_run(run_id, frame))
 
 
