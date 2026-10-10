@@ -1,0 +1,17 @@
+# Reuse the validated backend image; build with --platform linux/amd64 --provenance=false.
+ARG BACKEND_IMAGE=danger-mark-api:phase6
+FROM public.ecr.aws/awsguru/aws-lambda-adapter:1.1.0 AS adapter
+FROM ${BACKEND_IMAGE}
+USER root
+COPY --from=adapter /lambda-adapter /opt/extensions/lambda-adapter
+# Keep repository-relative cache paths unchanged while making writes Lambda-safe.
+RUN mv /app/artifacts /opt/pilot-artifacts \
+    && chmod -R a+rX /opt/pilot-artifacts \
+    && ln -s /tmp/danger-mark/artifacts /app/artifacts
+COPY infra/lambda_start.py /app/infra/lambda_start.py
+RUN chmod a+r /app/infra/lambda_start.py
+ENV AWS_LWA_PORT=8000 AWS_LWA_READINESS_CHECK_PATH=/api/v1/health \
+    AWS_LWA_READINESS_CHECK_HEALTHY_STATUS=200 AWS_LWA_ASYNC_INIT=true \
+    AWS_LWA_ENABLE_COMPRESSION=true AWS_LWA_INVOKE_MODE=buffered
+USER 10001:10001
+CMD ["python", "/app/infra/lambda_start.py"]

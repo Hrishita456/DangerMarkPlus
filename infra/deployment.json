@@ -1,0 +1,22 @@
+{
+  "account": "129762845600",
+  "profile": "danger-mark-project",
+  "region": "ap-southeast-2",
+  "image": "129762845600.dkr.ecr.ap-southeast-2.amazonaws.com/danger-mark-api:lambda-phase6-fe9ecd5",
+  "image_digest": "sha256:92fb38b722181696afe10d00fe85c100fcf54b61e85fc5b77977952d4968dae4",
+  "lambda": "danger-mark-api",
+  "role": "danger-mark-lambda-role",
+  "api_id": "4pc12p8rt1",
+  "api_origin": "https://4pc12p8rt1.execute-api.ap-southeast-2.amazonaws.com",
+  "frontend_bucket": "danger-mark-frontend-129762845600-sydney",
+  "cloudfront_id": "E3190UEF4G2T6N",
+  "oac_id": "E3BREGU4FDD3I9",
+  "frontend_origin": "https://dq0ijb66nf6yb.cloudfront.net",
+  "browser_validation": "passed: fresh analysis, navigation, flood/road overlays, locality selection, primary/backup and unavailable backup, safe sites, advisory; no captured app console errors/warnings",
+  "phase6_status": "complete_for_hackathon",
+  "browser_validated_on": "2026-10-11",
+  "limitations": [
+    "First Lambda cold start may exceed API Gateway timeout; warm /api/v1/health before demo.",
+    "Large road-impact response requires gzip; raw browser request-header trace not captured, successful browser rendering verified."
+  ]
+}

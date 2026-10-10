@@ -2,7 +2,7 @@
 
 The existing `Amazon/` React console reads FastAPI through a typed API client. The scenario selector separates the synthetic Phase 1 demo replay from the saved Phase 3/4 analysis. **Neither mode is validated operational evacuation guidance or a verified July 2023 flood reconstruction.**
 
-The Figma frontend remains in `Amazon/`. Its branding, desktop layout, and Leaflet map stack are preserved. Consequences and provisional routing use the local geospatial datasets and explicit model assumptions. Messaging, databases, authentication, and AWS deployment are not implemented.
+The Figma frontend remains in `Amazon/`. Its branding, desktop layout, and Leaflet map stack are preserved. Consequences and provisional routing use the local geospatial datasets and explicit model assumptions. Messaging, databases and authentication are not implemented. The hackathon deployment uses AWS serverless hosting.
 
 Phase 2 adds a separate [Delhi/Yamuna dataset pipeline](data/README.md): catalogued sources, offline geospatial preprocessing, and validation. The real datasets are not connected to the synthetic replay. See the [Phase 2 handoff](docs/phase-2.md) for the resumed implementation, source inventory, checks, and limitations.
 
@@ -11,6 +11,10 @@ Phase 3 adds a separate [deterministic flood-consequences engine](docs/phase-3.m
 Phase 4 adds an [evacuation planning engine](docs/phase-4.md) over saved Phase 3 results. It provides provisional destination assignments, primary/independent backup routes and explicit capacity/timing uncertainty. See [pilot planning results](docs/phase-4-results.json).
 
 Phase 5 integrates those saved outputs into Command Center, Evacuation, Flood Intelligence, Safe Sites and a simulated advisory preview. See the [Phase 5 handoff and browser checklist](docs/phase-5.md) for validation status, API coverage and limitations. The original demo remains independently selectable.
+
+Phase 6 is complete for the hackathon deployment (browser validated 11 October 2026): [public frontend](https://dq0ijb66nf6yb.cloudfront.net), [backend health](https://4pc12p8rt1.execute-api.ap-southeast-2.amazonaws.com/api/v1/health). The frontend uses private S3 + CloudFront; the backend uses API Gateway HTTP API + Lambda, with its image in ECR. Compact pilot inputs/results are bundled in the image; no runtime-data bucket is needed. See [AWS architecture, resource IDs and validation](docs/aws-architecture.md), [environment configuration](infra/.env.example), and [three-minute demo](docs/demo-flow.md).
+
+**Deployment limitations:** gzip is required for the large road-impact endpoint. A first cold start returned HTTP 503 after approximately 32.5 seconds; warm endpoint checks passed. Before a demo, open the health endpoint, wait for `status: ok`, then load the frontend. Concurrent scale-out may still encounter cold starts. This is a hackathon demonstration, not production-certified disaster infrastructure.
 
 ## Run locally
 
@@ -111,7 +115,7 @@ BharatBuilds/                 # Independent Git root
     └── phase-2.md           # Dataset handoff and known limitations
 ```
 
-`models/` and `infra/` remain reserved for later approved work. Large datasets and generated output stay out of Git; only small manifests and validation metadata are tracked. Geospatial preprocessing lives in `scripts/` and does not add dependencies to the replay backend. No database, distributed processing, ML model, or AWS deployment is added.
+`models/` remains reserved; `infra/` contains deployment wrappers, configuration, resource IDs and smoke checks. Large datasets and generated output stay out of Git; only small manifests and validation metadata are tracked. Geospatial preprocessing lives in `scripts/` and does not add dependencies to the replay backend. No database, distributed processing or ML model is added.
 
 ## Edit the demo
 
